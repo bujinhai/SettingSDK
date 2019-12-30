@@ -52,14 +52,14 @@ dependencies {
     //glide加载图片框架
     api 'com.github.bumptech.glide:glide:4.8.0'
     //json解析封装框架
-    api 'com.alibaba:fastjson:1.2.62'
+//    api 'com.alibaba:fastjson:1.2.62'
     //图片，视频，音频选择器
     api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
     //扫一扫，二维码
     api 'com.king.zxing:zxing-lite:1.1.3'
     //仿ios底部弹窗
     api 'com.bigkoo:alertview:1.0.3'
-    implementation 'com.novoda:bintray-release:0.2.7'
+//    implementation 'com.novoda:bintray-release:0.2.7'
 }
 
 //publishing {
