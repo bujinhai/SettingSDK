@@ -1,0 +1,67 @@
+设置相关的sdk
+包含功能：会员信息，评论，地址管理，实名认证，绑定手机号，登录密码管理，交易密码管理，银行卡设置，意见反馈，扫一扫，二维码，客服，专属二维码
+版本：
+    compileSdkVersion 27
+    targetSdkVersion 27
+    minSdkVersion 21
+使用方式：
+1.首先导入aar包，settinglibrary-release.aar
+    主工程中加入导入以下依赖（必须导入）
+    api 'com.android.support:support-v4:27.1.1'
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support:design:27.1.1'
+    testApi 'junit:junit:4.12'
+    androidTestApi 'com.android.support.test:runner:1.0.2'
+    androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.2'
+    api 'com.android.support:recyclerview-v7:27.1.1'
+    api 'com.android.support:cardview-v7:27.1.1'
+    //Retrofit和RxJava
+    api 'com.squareup.retrofit2:retrofit:2.6.2'
+    api 'com.squareup.retrofit2:converter-scalars:2.6.2'
+    api 'com.squareup.retrofit2:converter-gson:2.6.2'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'
+    api 'io.reactivex.rxjava2:rxjava:2.2.0'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    api 'com.squareup.okhttp3:okhttp:4.2.2'
+    api 'com.squareup.okhttp3:logging-interceptor:4.2.2'
+    //打印日志
+    api 'com.orhanobut:logger:2.2.0'
+    //glide加载图片框架
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    //json解析封装框架
+    api 'com.alibaba:fastjson:1.2.62'
+    //图片，视频，音频选择器
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    //扫一扫，二维码
+    api 'cn.yipianfengye.android:zxing-library:2.2'
+    //仿ios底部弹窗
+    api 'com.bigkoo:alertview:1.0.3'
+2.在application中初始化代码
+    SDKUtils.init(new Builder(this).setSiteID(siteID).setApplicationID(applicationID).build());
+    其中siteID为站点id，applicationID为应用id，根据自己项目填写
+3.登录成功之后调用以下方法保存登录信息给sdk使用：
+  UserData data = DataUtils.changeData(entity);
+  SettingBaseSDK.getInstance().setUserEntity(data);
+4.跳转到设置界面：
+    SettingActivity.startActivity(this, OBJECT_ID, NAME, OBJECT_NAME, OBJECT_DEFINE_ID);
+    OBJECT_ID, NAME, OBJECT_NAME, OBJECT_DEFINE_ID是必传字段
+5.退出登录实现：
+    个人中心实现SettingActivity.OnLoginOutClickListener接口，重写onLoginOutClick方法
+    @Override
+        public void onLoginOutClick() {
+            AppManager.getAppManager().finishAllActivity();
+            UserManager.clearUser();
+            SystemUtils.jumpActivity(getActivity(), LoginActivity.class);
+        }
+
+统一修改按钮button样式：
+    BtnStyleEntity entity = new BtnStyleEntity();
+    entity.setBtnBgColor(Color.BLUE);//背景颜色
+    entity.setBtnHeight(ScreenUtils.dip2px(this, 100));//按钮高度
+    entity.setBtnCorner(10);//按钮圆角
+    entity.setBtnTextColor(Color.YELLOW);//字体颜色
+    entity.setBtnTextSize(25);//字体大小
+    SDKUtils.saveBtnEntity(entity);
+
+
+测试demo详见主工程MainActivity

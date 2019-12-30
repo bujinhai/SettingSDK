@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/setting_layout_title_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.jinshu.settinglibrary.recyclerview.irc.IRecyclerView
+            android:id="@+id/irc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:loadMoreEnabled="true"
+            app:refreshEnabled="true"
+            app:refreshHeaderLayout="@layout/setting_layout_irecyclerview_classic_refresh_header" />
+
+
+        <com.jinshu.settinglibrary.widget.LoadingTip
+            android:id="@+id/loadedTip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:gravity="center"
+            android:focusable="true">
+
+        </com.jinshu.settinglibrary.widget.LoadingTip>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/setting_line_color"/>
+
+    <LinearLayout
+        android:id="@+id/ll_add_address"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/setting_add_address"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新增收货地址"
+            android:textSize="@dimen/font_text_size_18"
+            android:textColor="@color/setting_red"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

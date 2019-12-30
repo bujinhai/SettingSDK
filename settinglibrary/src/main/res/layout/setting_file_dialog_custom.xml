@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/setting_file_icon_update"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:textColor="@color/setting_main_text_color"
+            android:textSize="@dimen/font_text_size_16"
+            tools:text="新版本V7.8.4,邀您体验" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:textColor="@color/setting_minor_text_color"
+            android:textSize="@dimen/font_text_size_12"
+            tools:text="来喽，来喽发烧购物节，真的来袭来喽发烧购物节" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_dialog_negative"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/setting_file_bg_btn_cancel"
+                tools:text="下次提醒"
+                android:textColor="@color/setting_library_orange" />
+
+            <Button
+                android:id="@+id/btn_dialog_positive"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/setting_file_module_bg_btn_confirm"
+                tools:text="立即升级"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_describe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            tools:text="温馨提示：立即升级会消耗手机流量，土豪请随意！别错过新上线的优惠活动哦！"
+            android:textColor="@color/setting_library_orange"
+            android:textSize="@dimen/font_text_size_12" />
+
+    </LinearLayout>
+
+</LinearLayout>

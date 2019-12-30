@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/setting_white"
+    android:orientation="vertical">
+
+    <include layout="@layout/setting_layout_title_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.jinshu.settinglibrary.recyclerview.irc.IRecyclerView
+            android:id="@+id/irc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:loadMoreEnabled="true"
+            app:refreshEnabled="true"
+            app:refreshHeaderLayout="@layout/setting_layout_irecyclerview_classic_refresh_header" />
+
+
+        <com.jinshu.settinglibrary.widget.LoadingTip
+            android:id="@+id/loadedTip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:gravity="center"
+            android:focusable="true">
+
+        </com.jinshu.settinglibrary.widget.LoadingTip>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_add_card"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/setting_bg_add_bank"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/setting_icon_add" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="添加银行卡"
+            android:textColor="@color/setting_main_text_color"
+            android:textSize="@dimen/font_text_size_18" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/setting_main_bg_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/setting_layout_title_bar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/setting_bg_bank_list_color"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        android:textColor="@color/white"
+        android:text="正在审核中..."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="单位名称"
+                android:textColor="@color/setting_minor_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+            <TextView
+                android:id="@+id/et_company_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+        </LinearLayout>
+
+        <View style="@style/view_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="纳税人识别号"
+                android:textColor="@color/setting_minor_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+            <TextView
+                android:id="@+id/et_tax_payer_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+        </LinearLayout>
+
+        <View style="@style/view_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册地址"
+                android:textColor="@color/setting_minor_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+            <TextView
+                android:id="@+id/et_register_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+        </LinearLayout>
+
+        <View style="@style/view_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册电话"
+                android:textColor="@color/setting_minor_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+            <TextView
+                android:id="@+id/et_register_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+        </LinearLayout>
+
+        <View style="@style/view_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开户银行"
+                android:textColor="@color/setting_minor_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+            <TextView
+                android:id="@+id/et_bank_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+        </LinearLayout>
+
+        <View style="@style/view_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="银行账户"
+                android:textColor="@color/setting_minor_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+            <TextView
+                android:id="@+id/et_bank_account"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+        </LinearLayout>
+
+        <View style="@style/view_line" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_modify_receipt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/setting_bg_add_bank"
+            android:text="修改"
+            android:textColor="@color/setting_main_text_color"
+            android:textSize="@dimen/font_text_size_18" />
+
+        <Button
+            android:id="@+id/btn_delete_receipt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/setting_bg_btn"
+            android:text="删除"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_text_size_18" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

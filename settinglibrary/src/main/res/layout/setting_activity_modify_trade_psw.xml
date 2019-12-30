@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/setting_layout_title_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请输入原密码"
+        android:textColor="@color/setting_main_text_color"
+        android:textSize="@dimen/font_text_size_16"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"/>
+
+    <com.jinshu.settinglibrary.view.PasswordView
+        android:id="@+id/old_password_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cipherEnable="true"
+        app:mode="rect"
+        app:passwordLength="6"
+        app:passwordPadding="5dp"
+        android:layout_margin="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请输入新密码"
+        android:textColor="@color/setting_main_text_color"
+        android:textSize="@dimen/font_text_size_16"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"/>
+
+    <com.jinshu.settinglibrary.view.PasswordView
+        android:id="@+id/new_password_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cipherEnable="true"
+        app:mode="rect"
+        app:passwordLength="6"
+        app:passwordPadding="5dp"
+        android:layout_margin="15dp"/>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_btn_height"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/setting_bg_btn"
+        android:text="确定"
+        android:textColor="@color/setting_white"
+        android:textSize="@dimen/font_text_size_18" />
+
+</LinearLayout>

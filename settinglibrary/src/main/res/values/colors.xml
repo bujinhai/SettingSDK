@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF000000</color>
+    <color name="colorPrimaryDark">#FF000000</color>
+    <color name="colorAccent">#FF000000</color>
+
+    <!-- app主色调-->
+    <color name="setting_main_color">#ffffff</color>
+    <color name="setting_main_bg_color">#EEEEEE</color>
+    <color name="setting_main_text_color">#333333</color>
+    <color name="setting_minor_text_color">#999999</color>
+
+    <color name="setting_black">#000000</color>
+    <color name="setting_white">#FFFFFFFF</color>
+    <color name="setting_gray">#FFF0F0F0</color>
+    <color name="setting_red">#ff0000</color>
+    <color name="setting_blue">#7D7DFF</color>
+
+    <color name="setting_line_color">#EEEEEE</color>
+    <color name="setting_blue_color">#3F51B5</color>
+    <color name="setting_bg_bank_list_color">#ec5e65</color>
+    <color name="setting_library_orange">#ee632c</color>
+
+</resources>

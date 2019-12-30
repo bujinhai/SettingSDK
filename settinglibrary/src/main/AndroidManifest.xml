@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jinshu.settinglibrary">
+
+    <application
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".utils.permission.AcpActivity" />
+        <activity android:name=".activity.CommentActivity" />
+        <activity android:name=".activity.PublishCommentActivity" />
+        <activity android:name=".activity.AddressActivity" />
+        <activity android:name=".activity.ForgetPwsActivity" />
+        <activity android:name=".activity.ModifyPswActivity" />
+        <activity android:name=".activity.NameAuthenticationActivity" />
+        <activity android:name=".activity.AuthenticationDetailActivity" />
+        <activity android:name=".activity.SetTradePswActivity" />
+        <activity android:name=".activity.ForgetTradePswActivity" />
+        <activity android:name=".activity.ModifyTradePswActivity" />
+        <activity android:name=".activity.ResetTradePswActivity" />
+        <activity android:name=".activity.VerifyPhoneActivity" />
+        <activity android:name=".activity.BindPhoneActivity" />
+        <activity android:name=".activity.AboutUsActivity" />
+        <activity android:name=".activity.CreateAddressActivity" />
+        <activity android:name=".activity.BankCardListActivity" />
+        <activity android:name=".activity.CreateBankCardActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.AccountSecurityActivity"/>
+        <activity android:name=".activity.PaymentActivity"/>
+        <activity android:name=".activity.PersonActivity"/>
+        <activity android:name=".activity.ModifyNickActivity"/>
+        <activity android:name=".activity.QRCodeActivity"/>
+        <activity android:name=".activity.ArticleActivity"/>
+        <activity android:name=".activity.ArticleDetailActivity"/>
+        <activity android:name=".activity.FeedBackActivity"/>
+        <activity android:name=".activity.FeedBackListActivity"/>
+        <activity android:name=".activity.InvoiceListActivity"/>
+        <activity android:name=".activity.InvoiceActivity"/>
+        <activity android:name=".activity.ReceiptDetailActivity"/>
+        <activity android:name=".activity.MessageActivity"/>
+        <activity android:name=".activity.WalletActivity" />
+        <activity android:name=".activity.AccountActivity" />
+        <activity android:name=".activity.WithdrawActivity" />
+        <activity android:name=".activity.RechargeActivity" />
+    </application>
+
+</manifest>

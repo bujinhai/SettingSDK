@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/setting_white"
+    android:orientation="vertical">
+
+    <include layout="@layout/setting_layout_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="姓名"
+                    android:textColor="@color/setting_main_text_color"
+                    android:textSize="@dimen/font_text_size_16" />
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/font_text_size_16" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/view_line"
+                android:layout_marginStart="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="身份证号"
+                    android:textColor="@color/setting_main_text_color"
+                    android:textSize="@dimen/font_text_size_16" />
+
+                <TextView
+                    android:id="@+id/tv_id_num"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/font_text_size_16" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/view_line"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="身份证正面照"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_16" />
+
+            <ImageView
+                android:id="@+id/iv_id_card_front"
+                android:layout_width="260dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/setting_icon_front" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="身份证反面照"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_16" />
+
+            <ImageView
+                android:id="@+id/iv_id_card_back"
+                android:layout_width="260dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/setting_icon_front" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_btn_height"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_bg_btn"
+                android:text="确定"
+                android:textColor="@color/setting_white"
+                android:textSize="@dimen/font_text_size_18" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

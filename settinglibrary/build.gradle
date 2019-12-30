@@ -1,0 +1,95 @@
+apply plugin: 'com.android.library'
+apply plugin:'com.github.dcendents.android-maven'
+group='bujinhai' //替换成你自己的Github用户名
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //添加如下配置就OK了，解决AndroidStudio3.0 Canary 8注解报错
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.android.support:support-v4:27.1.1'
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support:design:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    api 'com.android.support:recyclerview-v7:27.1.1'
+    api 'com.android.support:cardview-v7:27.1.1'
+    //Retrofit和RxJava
+    api 'com.squareup.retrofit2:retrofit:2.6.2'
+    api 'com.squareup.retrofit2:converter-scalars:2.6.2'
+    api 'com.squareup.retrofit2:converter-gson:2.6.2'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'
+    api 'io.reactivex.rxjava2:rxjava:2.2.0'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    api 'com.squareup.okhttp3:okhttp:4.2.2'
+    api 'com.squareup.okhttp3:logging-interceptor:4.2.2'
+    //打印日志
+    api 'com.orhanobut:logger:2.2.0'
+    //glide加载图片框架
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    //json解析封装框架
+    api 'com.alibaba:fastjson:1.2.62'
+    //图片，视频，音频选择器
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    //扫一扫，二维码
+    api 'com.king.zxing:zxing-lite:1.1.3'
+    //仿ios底部弹窗
+    api 'com.bigkoo:alertview:1.0.3'
+    implementation 'com.novoda:bintray-release:0.2.7'
+}
+
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            groupId 'com.haoju.me'//You can either define these here or get them from project conf elsewhere
+//            artifactId 'IMLib'
+//            version '0.0.2-SNAPSHOT'
+//            artifact "$buildDir/outputs/aar/settinglibrary-release.aar" //aar artifact you want to publish
+//
+//            // generate pom nodes for dependencies
+//            pom.withXml {
+//                def dependenciesNode = asNode().appendNode('dependencies')
+//                configurations.implementation.allDependencies.each { dependency ->
+//                    if (!"unspecified".equals(dependenciesNode.name)) {
+//                        def dependencyNode = dependenciesNode.appendNode('dependency')
+//                        dependencyNode.appendNode('groupId', dependency.group)
+//                        dependencyNode.appendNode('artifactId', dependency.name)
+//                        dependencyNode.appendNode('version', dependency.version)
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+    //publish to filesystem repo
+//    repositories {
+//        maven {
+//            url "$buildDir/repo"
+//        }
+//    }
+//}
+

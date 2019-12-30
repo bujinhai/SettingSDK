@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SettingLibrary</string>
+
+    <string name="setting_net_error">网络访问错误，请稍后再试</string>
+    <string name="setting_empty">还没有数据哦</string>
+    <string name="setting_loading">请稍后&#8230;</string>
+    <string name="setting_reload">重新尝试</string>
+    <string name="setting_no_net">网络不可用,请检查你的网络</string>
+    <string name="setting_no_data">空数据</string>
+
+    <string name="setting_authentication_result">您已提交认证信息，正在审核中~</string>
+    <string name="setting_authentication_result_fail">您的信息未通过审核</string>
+    <string name="setting_authentication_result_success">恭喜，您已认证成功!</string>
+
+    <string name="setting_modify_nick_name">4&#8211;20个字符，可由中英文、数字、\"-\"组成</string>
+</resources>

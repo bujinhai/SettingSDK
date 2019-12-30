@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_16"
+                tools:text="name" />
+
+            <TextView
+                android:id="@+id/tv_user_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_16"
+                tools:text="12345678901" />
+
+            <TextView
+                android:id="@+id/tv_default"
+                android:layout_width="30dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/setting_bg_address_list_default"
+                android:gravity="center"
+                android:text="默认"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_text_size_10"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_sign"
+                android:layout_width="30dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/setting_address_list_sign"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_text_size_10"
+                tools:text="公司"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_address_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toLeftOf="@+id/iv_edit_address"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_12"
+                tools:text="上海市浦东新区沟里蹲" />
+
+            <ImageView
+                android:id="@+id/iv_edit_address"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignBottom="@+id/tv_address_name"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/setting_edit_address" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line_color" />
+
+</LinearLayout>

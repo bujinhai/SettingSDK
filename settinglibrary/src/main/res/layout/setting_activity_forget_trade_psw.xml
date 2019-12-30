@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/setting_main_bg_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/setting_layout_title_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="您正在重置6位数字密码，请用以下验证方式完成身份验证"
+        android:textSize="@dimen/font_text_size_12" />
+
+    <RelativeLayout
+        android:id="@+id/rl_verify_phone"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/setting_white">
+
+        <TextView
+            android:id="@+id/tv_verify_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="验证绑定手机信息"
+            android:textColor="@color/setting_main_text_color"
+            android:textSize="@dimen/font_text_size_16" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/setting_icon_arrow_next" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_verify"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="请输入您所收到的验证码" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_code"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:hint="请输入"
+                android:paddingStart="10dp"
+                android:layout_marginStart="10dp"
+                android:textCursorDrawable="@color/white"
+                android:textSize="@dimen/font_text_size_16" />
+
+            <TextView
+                android:id="@+id/tv_send"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/setting_white"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="重新发送"
+                android:textColor="@color/setting_red"
+                android:textSize="@dimen/font_text_size_16"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_timer"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="60s"
+                android:textColor="@color/setting_red"
+                android:textSize="@dimen/font_text_size_16" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_btn_height"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/setting_bg_btn"
+            android:text="确定"
+            android:textColor="@color/setting_white"
+            android:textSize="@dimen/font_text_size_18" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/setting_layout_title_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/white"
+            android:descendantFocusability="blocksDescendants">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="头像"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_16" />
+
+
+            <ImageView
+                android:id="@+id/item_right_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dip"
+                android:src="@drawable/setting_icon_arrow_next" />
+
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dip"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/item_right_arrow"
+                android:scaleType="centerCrop"
+                android:src="@drawable/setting_def_head" />
+
+        </RelativeLayout>
+
+        <View style="@style/view_line" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_person"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>

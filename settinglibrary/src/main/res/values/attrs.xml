@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="IRecyclerView">
+        <attr name="refreshHeaderLayout" format="reference" />
+        <attr name="loadMoreFooterLayout" format="reference" />
+        <attr name="refreshEnabled" format="boolean" />
+        <attr name="loadMoreEnabled" format="boolean" />
+        <attr name="refreshFinalMoveOffset" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PasswordView">
+        <attr name="passwordLength" format="integer" />
+        <attr name="passwordPadding" format="dimension" />
+        <attr name="borderColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="cursorFlashTime" format="integer" />
+        <attr name="isCursorEnable" format="boolean" />
+        <attr name="cipherEnable" format="boolean" />
+        <attr name="cursorColor" format="color" />
+        <attr name="mode" format="enum">
+            <enum name="underline" value="0" />
+            <enum name="rect" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!--自定义TabLayout-->
+    <declare-styleable name="TabLayoutIndicator">
+        <attr name="tabMargin" format="dimension" />
+        <attr name="matchParent" format="boolean" />
+    </declare-styleable>
+</resources>

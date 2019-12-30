@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- font -->
+    <dimen name="font_text_size_10">10sp</dimen>
+    <dimen name="font_text_size_12">12sp</dimen>
+    <dimen name="font_text_size_14">14sp</dimen>
+    <dimen name="font_text_size_16">16sp</dimen>
+    <dimen name="font_text_size_18">18sp</dimen>
+    <dimen name="font_text_size_20">20sp</dimen>
+    <dimen name="font_text_size_24">24sp</dimen>
+    <!--通用按钮高度-->
+    <dimen name="setting_btn_height">48dp</dimen>
+    <!--线条高度-->
+    <dimen name="setting_view_line_height">0.5dp</dimen>
+
+</resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/setting_main_bg_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/setting_layout_title_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/setting_white"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/et_nick_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入昵称"
+            android:paddingStart="10dp"
+            android:paddingEnd="5dp"
+            android:textColor="@color/setting_main_text_color"
+            android:textSize="@dimen/font_text_size_16" />
+
+        <ImageView
+            android:id="@+id/iv_delete_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingEnd="10dp"
+            android:src="@drawable/setting_icon_delet" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/setting_modify_nick_name"
+        android:textSize="@dimen/font_text_size_12"/>
+
+</LinearLayout>

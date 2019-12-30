@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/setting_main_bg_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/setting_layout_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setting_bg_bottom_white_corner"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_private_information"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="个人信息" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_address_manage"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="地址管理" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_my_comment"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="我的评论" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/setting_bg_white_corner"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_security"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="账号与安全" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_payment"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="支付设置" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_receipt"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="发票设置" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_clear_cache"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="清除缓存" />
+
+                    <TextView
+                        android:id="@+id/tv_cache"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        tools:text="0M"
+                        android:textSize="@dimen/font_text_size_16"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/setting_bg_white_corner"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_feedback"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="功能反馈" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_question"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="常见问题" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_qr_code"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="专属二维码" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_about_us"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="关于我们" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/setting_bg_white_corner"
+                android:text="退出登录"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_16" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

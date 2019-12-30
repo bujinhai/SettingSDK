@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_18"
+                tools:text="驴妈妈旅游网" />
+
+            <TextView
+                android:id="@+id/tv_default"
+                android:layout_width="30dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/setting_bg_address_list_default"
+                android:gravity="center"
+                android:text="默认"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_text_size_10"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_tax_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/setting_main_text_color"
+            android:textSize="@dimen/font_text_size_14"
+            tools:text="普通发票" />
+
+        <TextView
+            android:id="@+id/tv_register_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/setting_main_text_color"
+            android:textSize="@dimen/font_text_size_14"
+            tools:text="上海市嘉定区镇北支路" />
+
+        <View
+            style="@style/view_line"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/setting_icon_edit"
+                android:drawablePadding="5dp"
+                android:padding="5dp"
+                android:text="编辑"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+
+            <TextView
+                android:id="@+id/tv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:drawableLeft="@drawable/setting_icon_delete"
+                android:drawablePadding="5dp"
+                android:padding="5dp"
+                android:text="删除"
+                android:textColor="@color/setting_main_text_color"
+                android:textSize="@dimen/font_text_size_14" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

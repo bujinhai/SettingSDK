@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyDialog">
+        <!-- alertDialog窗口背景色 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--dialog是否有边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--dialog是否有标题-->
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否有遮盖(eg.Activity的闪屏页)-->
+        <item name="android:windowContentOverlay">@null</item>
+        <!--进出动画-->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <!--背景是否模糊显示-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!--普通dialog-->
+    <style name="CustomProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="view_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/setting_view_line_height</item>
+        <item name="android:background">@color/setting_line_color</item>
+    </style>
+
+    <style name="BottomDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/BottomDialogAnimation</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="BottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/setting_bottom_slid_show</item>
+        <item name="android:windowExitAnimation">@anim/setting_bottom_slid_hide</item>
+    </style>
+
+    <style name="MyCheckBox">
+        <item name="android:colorControlNormal">@color/setting_white</item>
+        <item name="android:colorControlActivated">@color/setting_red</item>
+    </style>
+
+    <style name="setting_rl_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">49dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <!--统一textView样式-->
+    <style name="setting_text_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@color/setting_main_text_color</item>
+        <item name="android:textSize">@dimen/font_text_size_16</item>
+
+    </style>
+    <!--统一箭头样式-->
+    <style name="setting_image_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:src">@drawable/setting_icon_arrow_next</item>
+    </style>
+
+    <style name="news_summary_photo_iv">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+    <!--统一按钮样式-->
+    <style name="setting_button_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/setting_btn_height</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:drawable">@drawable/setting_bg_btn</item>
+        <item name="android:textColor">@color/setting_white</item>
+        <item name="android:textSize">@dimen/font_text_size_18</item>
+        <item name="android:background">@drawable/setting_bg_btn</item>
+    </style>
+
+</resources>
