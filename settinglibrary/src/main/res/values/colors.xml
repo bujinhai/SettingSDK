@@ -7,7 +7,7 @@
     <!-- app主色调-->
     <color name="setting_main_color">#ffffff</color>
     <color name="setting_main_bg_color">#EEEEEE</color>
-    <color name="setting_main_text_color">#333333</color>
+    <color name="setting_main_text_color">#323232</color>
     <color name="setting_minor_text_color">#999999</color>
 
     <color name="setting_black">#000000</color>
@@ -15,6 +15,7 @@
     <color name="setting_gray">#FFF0F0F0</color>
     <color name="setting_red">#ff0000</color>
     <color name="setting_blue">#7D7DFF</color>
+    <color name="setting_green">#53b243</color>
 
     <color name="setting_line_color">#EEEEEE</color>
     <color name="setting_blue_color">#3F51B5</color>

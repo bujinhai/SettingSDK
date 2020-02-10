@@ -6,21 +6,25 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.jinshu.settinglibrary.R;
+import com.jinshu.settinglibrary.activity.MessageDetailActivity;
 import com.jinshu.settinglibrary.adapter.MessageAdapter;
 import com.jinshu.settinglibrary.api.SApi;
 import com.jinshu.settinglibrary.api.SHostType;
 import com.jinshu.settinglibrary.app.SAppConstant;
 import com.jinshu.settinglibrary.base.baseapp.SBaseFragment;
+import com.jinshu.settinglibrary.base.basebean.SBaseResponse;
 import com.jinshu.settinglibrary.base.baserx.SRxHelper;
 import com.jinshu.settinglibrary.base.baserx.SRxSchedulers;
 import com.jinshu.settinglibrary.base.baserx.SRxSubscriber;
 import com.jinshu.settinglibrary.entity.MessageEntity;
 import com.jinshu.settinglibrary.recyclerview.irc.IRecyclerView;
+import com.jinshu.settinglibrary.recyclerview.irc.OnItemClickListener;
 import com.jinshu.settinglibrary.recyclerview.irc.OnLoadMoreListener;
 import com.jinshu.settinglibrary.recyclerview.irc.OnRefreshListener;
 import com.jinshu.settinglibrary.recyclerview.widget.LoadMoreFooterView;
 import com.jinshu.settinglibrary.utils.MasterUtils;
 import com.jinshu.settinglibrary.utils.SDKUtils;
+import com.jinshu.settinglibrary.utils.SystemUtils;
 import com.jinshu.settinglibrary.utils.ToastUtil;
 import com.jinshu.settinglibrary.widget.LoadingTip;
 
@@ -58,6 +62,40 @@ public class MessageFragment extends SBaseFragment implements OnRefreshListener,
 
         mIrc.setOnRefreshListener(this);
         mIrc.setOnLoadMoreListener(this);
+
+        setListener();
+    }
+
+    private void setListener() {
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, Object o, int position) {
+                MessageEntity.DataInfo.RowsInfo info = (MessageEntity.DataInfo.RowsInfo) o;
+                readOneMessage(info.getMessageID());
+                Bundle bundle = new Bundle();
+                bundle.putString(SAppConstant.MESSAGE_ID, info.getMessageID());
+                SystemUtils.jumpActivity(getActivity(), MessageDetailActivity.class, bundle);
+            }
+        });
+    }
+
+    private void readOneMessage(String messageID) {
+        SApi.getDefault(SHostType.BASE_URL)
+                .readOneMessage(MasterUtils.addSessionID(), messageID)
+                .compose(SRxSchedulers.<SBaseResponse>io_main())
+                .subscribe(new SRxSubscriber<SBaseResponse>(getContext(), false) {
+                    @Override
+                    protected void onSuccess(SBaseResponse sBaseResponse) {
+                        if (sBaseResponse.faild()) {
+                            ToastUtil.showShort(sBaseResponse.header.msg);
+                        }
+                    }
+
+                    @Override
+                    protected void onFail(String message) {
+                        ToastUtil.showShort(message);
+                    }
+                });
     }
 
     @Override

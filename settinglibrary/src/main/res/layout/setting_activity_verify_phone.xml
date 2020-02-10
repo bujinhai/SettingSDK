@@ -62,7 +62,7 @@
                 android:layout_gravity="end"
                 android:background="@drawable/setting_bg_btn"
                 android:gravity="center"
-                android:text="60s"
+                android:text="120s"
                 android:textColor="@color/white"
                 android:visibility="gone" />
 

@@ -133,6 +133,13 @@
 
         <View style="@style/view_line" />
 
+
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="                  Copyright©️2019\n氧寿健康咨询(上海)有限公司版权所有"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

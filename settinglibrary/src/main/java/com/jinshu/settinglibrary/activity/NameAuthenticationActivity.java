@@ -114,29 +114,30 @@ public class NameAuthenticationActivity extends SBaseActivity implements View.On
                 .subscribe(new SRxSubscriber<CertificateStatusEntity>(mContext) {
                     @Override
                     protected void onSuccess(CertificateStatusEntity statusEntity) {
-                        if (statusEntity != null) {
-                            if (statusEntity.getData().getPeopleID() == null) {
-                                llValidate.setVisibility(View.VISIBLE);
-                                llCardImg.setVisibility(View.GONE);
-                                rlResult.setVisibility(View.GONE);
-                            } else {
-                                llValidate.setVisibility(View.GONE);
-                                llCardImg.setVisibility(View.GONE);
-                                rlResult.setVisibility(View.VISIBLE);
+                        if (statusEntity == null | statusEntity.getData() == null) {
+                            return;
+                        }
+                        if (statusEntity.getData().getPeopleID() == null) {
+                            llValidate.setVisibility(View.VISIBLE);
+                            llCardImg.setVisibility(View.GONE);
+                            rlResult.setVisibility(View.GONE);
+                        } else {
+                            llValidate.setVisibility(View.GONE);
+                            llCardImg.setVisibility(View.GONE);
+                            rlResult.setVisibility(View.VISIBLE);
 
-                                if (statusEntity.getData().getApproveStatus() == 0) {
-                                    ivVerifyImg.setBackgroundResource(R.drawable.setting_authentication_send);
-                                    tvVerifyResult.setText(getString(R.string.setting_authentication_result));
-                                    btnCheckInformation.setText("查看信息");
-                                } else if (statusEntity.getData().getApproveStatus() == 2) {
-                                    ivVerifyImg.setBackgroundResource(R.drawable.setting_authentication_fail);
-                                    tvVerifyResult.setText(getString(R.string.setting_authentication_result_fail));
-                                    btnCheckInformation.setText("重新上传");
-                                } else if (statusEntity.getData().getApproveStatus() == 1) {
-                                    ivVerifyImg.setBackgroundResource(R.drawable.setting_authentication_success);
-                                    tvVerifyResult.setText(getString(R.string.setting_authentication_result_success));
-                                    btnCheckInformation.setText("查看详情");
-                                }
+                            if (statusEntity.getData().getApproveStatus() == 0) {
+                                ivVerifyImg.setBackgroundResource(R.drawable.setting_authentication_send);
+                                tvVerifyResult.setText(getString(R.string.setting_authentication_result));
+                                btnCheckInformation.setText("查看信息");
+                            } else if (statusEntity.getData().getApproveStatus() == 2) {
+                                ivVerifyImg.setBackgroundResource(R.drawable.setting_authentication_fail);
+                                tvVerifyResult.setText(getString(R.string.setting_authentication_result_fail));
+                                btnCheckInformation.setText("重新上传");
+                            } else if (statusEntity.getData().getApproveStatus() == 1) {
+                                ivVerifyImg.setBackgroundResource(R.drawable.setting_authentication_success);
+                                tvVerifyResult.setText(getString(R.string.setting_authentication_result_success));
+                                btnCheckInformation.setText("查看详情");
                             }
                         }
                     }

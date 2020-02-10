@@ -92,11 +92,11 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
-                android:background="@color/white"
+                android:background="@drawable/setting_bg_btn"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="60s"
-                android:textColor="@color/setting_red"
+                android:text="120s"
+                android:textColor="@color/setting_white"
                 android:textSize="@dimen/font_text_size_16" />
 
         </LinearLayout>

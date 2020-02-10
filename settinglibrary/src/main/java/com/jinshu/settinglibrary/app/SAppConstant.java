@@ -45,6 +45,7 @@ public class SAppConstant {
     public static final String MESSAGE_TYPE = "MESSAGE_TYPE";
     public static final String MEMBER_ADDRESS_ID = "MEMBER_ADDRESS_ID";
     public static final String IS_GOODS = "IS_GOODS";
+    public static final String MESSAGE_ID = "MESSAGE_ID";
 
 
     /**

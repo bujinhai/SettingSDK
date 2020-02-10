@@ -19,6 +19,7 @@ import com.jinshu.settinglibrary.entity.ImageEntity;
 import com.jinshu.settinglibrary.entity.InvoiceDetailEntity;
 import com.jinshu.settinglibrary.entity.InvoiceEntity;
 import com.jinshu.settinglibrary.entity.MemberEntity;
+import com.jinshu.settinglibrary.entity.MessageDetailEntity;
 import com.jinshu.settinglibrary.entity.MessageEntity;
 import com.jinshu.settinglibrary.entity.NavigatorEntity;
 import com.jinshu.settinglibrary.entity.SmsEntity;
@@ -617,6 +618,22 @@ public interface SApiService {
             @Query("pageNumber") int pageNumber,
             @Query("sortTypeOrder") String sortTypeOrder);
 
+    /**
+     * 获取消息的详细信息
+     */
+    @GET("getMessageDetail.json")
+    Observable<SBaseResponse<MessageDetailEntity>> getMessageDetail(
+            @Query("sessionID") String sessionID,
+            @Query("messageID") String messageID);
+
+    /**
+     * 阅读一个消息
+     */
+    @GET("readOneMessage.json")
+    Observable<SBaseResponse> readOneMessage(
+            @Query("sessionID") String sessionID,
+            @Query("messageID") String messageID);
+
 
     /**
      * 获取会员钱包统计数据
@@ -634,6 +651,7 @@ public interface SApiService {
             @Query("currentPage") int currentPage,
             @Query("pageNumber") int pageNumber,
             @Query("sortTypeTime") int sortTypeTime);
+
 
     /**
      * 上传单张图片
