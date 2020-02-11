@@ -1,5 +1,7 @@
 package com.jinshu.settingsdk;
 
+import android.Manifest;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +13,12 @@ import com.jinshu.settinglibrary.activity.WalletActivity;
 import com.jinshu.settinglibrary.entity.ParamData;
 import com.jinshu.settinglibrary.utils.SDKUtils;
 import com.jinshu.settinglibrary.utils.SystemUtils;
+import com.jinshu.settinglibrary.utils.ToastUtil;
+import com.jinshu.settinglibrary.utils.permission.Acp;
+import com.jinshu.settinglibrary.utils.permission.AcpListener;
+import com.jinshu.settinglibrary.utils.permission.AcpOptions;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, SettingActivity.OnLoginOutClickListener {
 
@@ -39,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnRecovery.setOnClickListener(this);
         btnMessage.setOnClickListener(this);
         btnWallet.setOnClickListener(this);
+
+        checkPermission(this);
+
 //        BtnStyleEntity entity = new BtnStyleEntity();
 //        entity.setBtnBgColor(Color.BLUE);
 //        entity.setBtnHeight(ScreenUtils.dip2px(this, 100));
@@ -47,6 +58,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        entity.setBtnTextSize(25);
 //        SDKUtils.saveBtnEntity(entity);
 
+    }
+
+    private static void checkPermission(final Activity activity) {
+        Acp.getInstance(activity).request(new AcpOptions.Builder().setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.CAMERA).build(), new AcpListener() {
+            @Override
+            public void onGranted() {
+
+            }
+
+            @Override
+            public void onDenied(List<String> permissions) {
+                ToastUtil.showShort("获取权限失败，请手动开启");
+            }
+        });
     }
 
     @Override

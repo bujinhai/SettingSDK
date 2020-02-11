@@ -7,6 +7,11 @@
     <string name="setting_reload">重新尝试</string>
     <string name="setting_no_net">网络不可用,请检查你的网络</string>
     <string name="setting_no_data">空数据</string>
+    <!--选择头像-->
+    <string name="setting_select_image_title">更换头像</string>
+    <string name="setting_select_image_camera">拍照</string>
+    <string name="setting_select_image_gallery">从相册中选择</string>
+    <string name="setting_common_cancel">取消</string>
 
     <string name="setting_authentication_result">您已提交认证信息，正在审核中~</string>
     <string name="setting_authentication_result_fail">您的信息未通过审核</string>

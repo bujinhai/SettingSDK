@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.EditText;
 
+import com.bigkoo.alertview.AlertView;
 import com.jinshu.settinglibrary.R;
 import com.jinshu.settinglibrary.adapter.ImageAdapter;
 import com.jinshu.settinglibrary.api.SApi;
@@ -22,6 +23,7 @@ import com.jinshu.settinglibrary.utils.MasterUtils;
 import com.jinshu.settinglibrary.utils.ToastUtil;
 import com.jinshu.settinglibrary.view.MyRecyclerView;
 import com.jinshu.settinglibrary.widget.PatrolDecoration;
+import com.luck.picture.lib.PictureSelectionModel;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -100,7 +102,7 @@ public class PublishCommentActivity extends SBaseActivity implements ImageAdapte
             public void onClick(View v) {
                 if (Configure.PUBLISH.name().equals(commentType)) {
                     submitOneDiscuss();
-                } else if (Configure.MODIFY.name().equals(commentType)){
+                } else if (Configure.MODIFY.name().equals(commentType)) {
                     updateOneDiscuss();
                 }
             }
@@ -198,19 +200,59 @@ public class PublishCommentActivity extends SBaseActivity implements ImageAdapte
 
     @Override
     public void onAddPicClick() {
-        PictureSelector.create(PublishCommentActivity.this)
-                .openGallery(PictureMimeType.ofImage())
-                .maxSelectNum(3)
-                .minSelectNum(1)
-                .imageSpanCount(4)
-                .selectionMode(PictureConfig.MULTIPLE)
-                .selectionMedia(pictureList)
-                .previewImage(true)
-                .isCamera(true)
-                .isZoomAnim(true)
-                .compress(true)
+        showDialog();
+    }
+
+    private void showDialog() {
+        new AlertView("选择图片", null,
+                getString(R.string.setting_common_cancel), null,
+                new String[]{getString(R.string.setting_select_image_camera),
+                        getString(R.string.setting_select_image_gallery)}, this,
+                AlertView.Style.ActionSheet, new com.bigkoo.alertview.OnItemClickListener() {
+            @Override
+            public void onItemClick(Object o, int position) {
+                if (position == 0) {
+                    //拍照
+                    selectPicture(1);
+                } else {
+                    //相册
+                    selectPicture(2);
+                }
+            }
+        }).show();
+    }
+
+    /**
+     * type:1-拍照  2-相册
+     */
+    private void selectPicture(int type) {
+        PictureSelector selector = PictureSelector
+                .create(this);
+        PictureSelectionModel model = null;
+        if (type == 1) {
+            model = selector.openCamera(PictureMimeType.ofImage())
+                    .isCamera(true);// 是否显示拍照按钮
+        } else {
+            model = selector.openGallery(PictureMimeType.ofImage())
+                    .isCamera(false);
+        }
+        model.theme(R.style.picture_default_style)
+                .maxSelectNum(1)// 最大图片选择数量 int
+                .minSelectNum(1)// 最小选择数量 int
+                .imageSpanCount(4)// 每行显示个数 int
+                .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                .enableCrop(true)// 是否裁剪
+                .compress(true)// 是否压缩
+                .circleDimmedLayer(false)// 是否圆形裁剪
+                .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
+                .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false
+                .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                .freeStyleCropEnabled(false)// 裁剪框是否可拖拽
+                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
+                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .minimumCompressSize(100)// 小于100kb的图片不压缩
-                .forResult(PictureConfig.CHOOSE_REQUEST);
+                .selectionMedia(pictureList)// 是否传入已选图片
+                .forResult(PictureConfig.REQUEST_CAMERA);
     }
 
     @Override

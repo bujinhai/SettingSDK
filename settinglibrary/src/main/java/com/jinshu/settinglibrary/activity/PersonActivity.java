@@ -34,6 +34,7 @@ import com.jinshu.settinglibrary.utils.SystemUtils;
 import com.jinshu.settinglibrary.utils.ToastUtil;
 import com.jinshu.settinglibrary.utils.UploadUtil;
 import com.jinshu.settinglibrary.widget.DatePickerManage;
+import com.luck.picture.lib.PictureSelectionModel;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -57,6 +58,12 @@ public class PersonActivity extends SBaseActivity {
     private PersonAdapter mAdapter;
     private ArrayList<SettingEntity> userList = new ArrayList<>();
     private List<LocalMedia> selectList = new ArrayList<>();
+
+    public final static int RESULT_PICK_FROM_CAMERA = 0x211;
+    public final static int RESULT_SELECT_PICTURE = 0x202;
+    private static final int PHOTO_REQUEST_CUT = 0x203;
+    private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
+    private String mCameraTempFile = "" + System.currentTimeMillis() + PHOTO_FILE_NAME;
 
     @Override
     public int getLayoutId() {
@@ -111,7 +118,10 @@ public class PersonActivity extends SBaseActivity {
     /*更新界面*/
     private void updateUser() {
         MemberEntity entity = SDKUtils.getMember();
-        String titleArray[] = {"昵称", "手机号", "性别", "出生日期"};
+        if (entity == null) {
+            return;
+        }
+        String[] titleArray = {"昵称", "手机号", "性别", "出生日期"};
         ImageLoaderUtils.displayCirclePhoto(this, ivAvatar, entity.getAvatarURL());
 
         userList.clear();
@@ -270,35 +280,91 @@ public class PersonActivity extends SBaseActivity {
     }
 
     private void selectAvatar() {
-        PictureSelector
-                .create(this)
-                .openGallery(PictureMimeType.ofImage())
-                .theme(R.style.picture_default_style)
-                .maxSelectNum(1)
-                .minSelectNum(1)
-                .imageSpanCount(4)
-                .selectionMode(PictureConfig.SINGLE)
-                .isCamera(true)
-                .enableCrop(true)
-                .compress(true)
-                .minimumCompressSize(100)
-                .selectionMedia(selectList)// 是否传入已选图片
-                .forResult(PictureConfig.CHOOSE_REQUEST);
+        new AlertView(getString(R.string.setting_select_image_title), null,
+                getString(R.string.setting_common_cancel), null,
+                new String[]{getString(R.string.setting_select_image_camera),
+                        getString(R.string.setting_select_image_gallery)}, this,
+                AlertView.Style.ActionSheet, new com.bigkoo.alertview.OnItemClickListener() {
+            @Override
+            public void onItemClick(Object o, int position) {
+                if (position == 0) {
+                    //拍照
+                    selectPicture(1);
+                } else {
+                    //相册
+                    selectPicture(2);
+                }
+            }
+        }).show();
     }
+
+    /**
+     * type:1-拍照  2-相册
+     */
+    private void selectPicture(int type) {
+        PictureSelector selector = PictureSelector
+                .create(this);
+        PictureSelectionModel model = null;
+        if (type == 1) {
+            model = selector.openCamera(PictureMimeType.ofImage())
+                    .isCamera(true);// 是否显示拍照按钮
+        } else {
+            model = selector.openGallery(PictureMimeType.ofImage())
+                    .isCamera(false);
+        }
+        model.theme(R.style.picture_default_style)
+                .maxSelectNum(1)// 最大图片选择数量 int
+                .minSelectNum(1)// 最小选择数量 int
+                .imageSpanCount(4)// 每行显示个数 int
+                .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                .enableCrop(true)// 是否裁剪
+                .compress(true)// 是否压缩
+                .circleDimmedLayer(false)// 是否圆形裁剪
+                .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
+                .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false
+                .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                .freeStyleCropEnabled(false)// 裁剪框是否可拖拽
+                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
+                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
+                .minimumCompressSize(100)// 小于100kb的图片不压缩
+                .selectionMedia(selectList)// 是否传入已选图片
+                .forResult(PictureConfig.REQUEST_CAMERA);
+    }
+
+    /**
+     * 选择相册
+     */
+//    private void chooseFromAlbum() {
+//        PictureSelector
+//                .create(this)
+//                .openGallery(PictureMimeType.ofImage())
+//                .theme(R.style.picture_default_style)
+//                .selectionMode(PictureConfig.SINGLE)
+//                .isCamera(false)
+//                .enableCrop(true)
+//                .compress(true)
+//                .circleDimmedLayer(false)// 是否圆形裁剪
+//                .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
+//                .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false
+//                .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+//                .freeStyleCropEnabled(false)// 裁剪框是否可拖拽
+//                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
+//                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
+//                .minimumCompressSize(100)
+//                .selectionMedia(selectList)// 是否传入已选图片
+//                .forResult(PictureConfig.CHOOSE_REQUEST);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PictureConfig.CHOOSE_REQUEST:
+                case PictureConfig.REQUEST_CAMERA:
                     selectList = PictureSelector.obtainMultipleResult(data);
-                    if (selectList != null && selectList.size() > 0) {
-                        if (selectList.get(0).isCompressed()) {
-                            String path = selectList.get(0).getCompressPath();
-                            uploadFile(path);
-                        }
-                    }
+                    uploadFile(selectList.get(0).getCompressPath());
                     break;
             }
         }
@@ -319,10 +385,12 @@ public class PersonActivity extends SBaseActivity {
                         String url = response.body.getUrl();
                         if (url == null) {
                             return;
-                        }MemberEntity entity = SDKUtils.getMember();
-
-                        entity.setAvatarURL(url);
-                        SDKUtils.saveMember(entity);
+                        }
+                        MemberEntity entity = SDKUtils.getMember();
+                        if (entity != null) {
+                            entity.setAvatarURL(url);
+                            SDKUtils.saveMember(entity);
+                        }
 
                         ImageLoaderUtils.displayCirclePhoto(mContext, ivAvatar, url);
                         updateMyMemberAvatar(url);
