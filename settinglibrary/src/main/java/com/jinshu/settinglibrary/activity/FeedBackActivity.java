@@ -119,7 +119,7 @@ public class FeedBackActivity extends SBaseActivity implements View.OnClickListe
                 if (position == 0) {
                     //拍照
                     selectPicture(1);
-                } else {
+                } else if (position == 1){
                     //相册
                     selectPicture(2);
                 }

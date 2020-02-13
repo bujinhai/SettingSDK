@@ -9,6 +9,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.jinshu.settinglibrary.R;
 
@@ -154,5 +156,18 @@ public final class SystemUtils {
      */
     public static Intent getLaunchAppIntent(Context context, String packageName) {
         return context.getPackageManager().getLaunchIntentForPackage(packageName);
+    }
+
+
+    /**
+     * 打卡软键盘
+     *
+     * @param mEditText 输入框
+     */
+    public static void openKeybord(EditText mEditText, Activity aty) {
+        InputMethodManager imm = (InputMethodManager) aty.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 }

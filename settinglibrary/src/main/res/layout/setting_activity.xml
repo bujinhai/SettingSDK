@@ -149,7 +149,7 @@
 
                     <TextView
                         style="@style/setting_text_view"
-                        android:text="功能反馈" />
+                        android:text="意见反馈" />
 
                     <ImageView style="@style/setting_image_view" />
 
@@ -178,6 +178,20 @@
                     <TextView
                         style="@style/setting_text_view"
                         android:text="专属二维码" />
+
+                    <ImageView style="@style/setting_image_view" />
+
+                </RelativeLayout>
+
+                <View style="@style/view_line" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_help"
+                    style="@style/setting_rl_view">
+
+                    <TextView
+                        style="@style/setting_text_view"
+                        android:text="使用帮组" />
 
                     <ImageView style="@style/setting_image_view" />
 

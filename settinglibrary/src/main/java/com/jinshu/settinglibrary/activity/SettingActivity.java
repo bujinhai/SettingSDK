@@ -38,7 +38,7 @@ import io.reactivex.functions.Consumer;
 public class SettingActivity extends SBaseActivity implements View.OnClickListener {
 
     private RelativeLayout rl_private_information, rl_address_manage, rl_my_comment, rl_security, rl_payment,
-            rl_receipt, rl_clear_cache, rl_feedback, rl_question, rl_qr_code, rl_about_us;
+            rl_receipt, rl_clear_cache, rl_feedback, rl_question, rl_qr_code, rl_help, rl_about_us;
     private TextView tvCache;
     private String objectID;
     private String name;
@@ -79,6 +79,7 @@ public class SettingActivity extends SBaseActivity implements View.OnClickListen
         rl_feedback = findViewById(R.id.rl_feedback);
         rl_question = findViewById(R.id.rl_question);
         rl_qr_code = findViewById(R.id.rl_qr_code);
+        rl_help = findViewById(R.id.rl_help);
         rl_about_us = findViewById(R.id.rl_about_us);
         tvCache = findViewById(R.id.tv_cache);
         btnLoginOut = findViewById(R.id.btn_logout);
@@ -124,6 +125,7 @@ public class SettingActivity extends SBaseActivity implements View.OnClickListen
         rl_feedback.setOnClickListener(this);
         rl_question.setOnClickListener(this);
         rl_qr_code.setOnClickListener(this);
+        rl_help.setOnClickListener(this);
         rl_about_us.setOnClickListener(this);
         btnLoginOut.setOnClickListener(this);
     }
@@ -160,6 +162,11 @@ public class SettingActivity extends SBaseActivity implements View.OnClickListen
             SystemUtils.jumpActivity(this, ArticleActivity.class, bundle);
         } else if (v.getId() == R.id.rl_qr_code) {
             SystemUtils.jumpActivity(this, QRCodeActivity.class);
+        } else if (v.getId() == R.id.rl_help) {
+            Bundle bundle = new Bundle();
+            bundle.putString(SAppConstant.ARTICLE_TYPE, Configure.HELP.name());
+            bundle.putString(SAppConstant.NAVIGATOR_ID, mParam.getNavigator_help_ID());
+            SystemUtils.jumpActivity(mActivity, ArticleActivity.class, bundle);
         } else if (v.getId() == R.id.rl_about_us) {
             Bundle bundle = new Bundle();
             bundle.putString(SAppConstant.NAVIGATOR_ID, mParam.getNavigator_help_ID());
@@ -205,6 +212,7 @@ public class SettingActivity extends SBaseActivity implements View.OnClickListen
 
     public interface OnLoginOutClickListener {
         void onLoginOutClick();
+
         void onUpdateAvatar();
     }
 

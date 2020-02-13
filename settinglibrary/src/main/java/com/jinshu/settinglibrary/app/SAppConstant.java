@@ -13,6 +13,7 @@ public class SAppConstant {
     public static final String CITY_ROOT_ID = "6ee7a940c0e048b7ba52fc22a6a5ad59";
     public static final String GENDER_TITLE_ID_MALE= "b3d9feef6c5c485fa1d089503f034952";
     public static final String GENDER_TITLE_ID_FEMAIL = "23ec6505d9d742f0bdd0046dfd64b92c";
+    public static final String CATEGORY_ID = "ab2907ce6db142d2abb64d0adef5bc69";//性别分类id
 
     /**
      * 本地存储key值

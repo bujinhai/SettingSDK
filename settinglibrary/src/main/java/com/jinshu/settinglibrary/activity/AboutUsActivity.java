@@ -1,11 +1,11 @@
 package com.jinshu.settinglibrary.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.ImageView;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,13 +17,12 @@ import com.jinshu.settinglibrary.base.baseapp.SBaseActivity;
 import com.jinshu.settinglibrary.base.baserx.SRxHelper;
 import com.jinshu.settinglibrary.base.baserx.SRxSchedulers;
 import com.jinshu.settinglibrary.base.baserx.SRxSubscriber;
-import com.jinshu.settinglibrary.entity.Configure;
+import com.jinshu.settinglibrary.entity.ArticleMoreEntity;
 import com.jinshu.settinglibrary.entity.VersionData;
 import com.jinshu.settinglibrary.utils.MasterUtils;
 import com.jinshu.settinglibrary.utils.SystemUtils;
 import com.jinshu.settinglibrary.utils.ToastUtil;
 import com.jinshu.settinglibrary.utils.UpdateUtils;
-import com.king.zxing.util.CodeUtils;
 
 /**
  * Create on 2019/9/29 16:12 by bll
@@ -31,14 +30,15 @@ import com.king.zxing.util.CodeUtils;
  */
 
 
-public class AboutUsActivity extends SBaseActivity implements View.OnClickListener,UpdateUtils.OnUpDateClickListener {
+public class AboutUsActivity extends SBaseActivity implements View.OnClickListener, UpdateUtils.OnUpDateClickListener {
 
-    private ImageView ivLogo, ivCode;
-    private Bitmap mBitmap;
-    private LinearLayout llChenck, llHelp;
+    private LinearLayout llChenck, llHelp, llPolicy;
     private String code, version;
     private String navigatorID;
     private TextView tvVersion;
+    private WebView mWebView;
+
+    private static final String ARTICLE_ID = "8a2f462a6bf84884016bfda290841c51";
 
     @Override
     public int getLayoutId() {
@@ -49,17 +49,17 @@ public class AboutUsActivity extends SBaseActivity implements View.OnClickListen
     public void initView(Intent intent, @Nullable Bundle savedInstanceState) {
         setTitle("关于我们");
         setBackAction();
-        ivLogo = findViewById(R.id.iv_logo);
-        ivCode = findViewById(R.id.iv_qr_code);
         llChenck = findViewById(R.id.ll_check_version);
         llHelp = findViewById(R.id.ll_help);
+        llPolicy = findViewById(R.id.ll_privacy_policy);
         tvVersion = findViewById(R.id.tv_version);
-
-        mBitmap = CodeUtils.createQRCode("http://www.baidu.com", 300, null);
-        ivCode.setImageBitmap(mBitmap);
-
+        mWebView = findViewById(R.id.web_view);
         llChenck.setOnClickListener(this);
         llHelp.setOnClickListener(this);
+        llPolicy.setOnClickListener(this);
+
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
     }
 
     @Override
@@ -70,19 +70,7 @@ public class AboutUsActivity extends SBaseActivity implements View.OnClickListen
         }
         version = SystemUtils.getAppVersionName(this);
         checkVersion();
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.ll_check_version) {
-            UpdateUtils.getVersionData(mActivity, MasterUtils.getSiteID());
-            UpdateUtils.setOnUpDateCancelListener(AboutUsActivity.this);
-        } else if (v.getId() == R.id.ll_help) {
-            Bundle bundle = new Bundle();
-            bundle.putString(SAppConstant.ARTICLE_TYPE, Configure.HELP.name());
-            bundle.putString(SAppConstant.NAVIGATOR_ID, navigatorID);
-            SystemUtils.jumpActivity(mActivity, ArticleActivity.class, bundle);
-        }
+        getArticleMoreDetail();
     }
 
     private void checkVersion() {
@@ -111,6 +99,44 @@ public class AboutUsActivity extends SBaseActivity implements View.OnClickListen
                 });
     }
 
+    private void getArticleMoreDetail() {
+        SApi.getDefault(SHostType.BASE_URL)
+                .getArticleMoreDetail(MasterUtils.addSessionID(), ARTICLE_ID)
+                .compose(SRxHelper.<ArticleMoreEntity>handleResult())
+                .compose(SRxSchedulers.<ArticleMoreEntity>io_main())
+                .subscribe(new SRxSubscriber<ArticleMoreEntity>(mContext, false) {
+                    @Override
+                    protected void onSuccess(ArticleMoreEntity entity) {
+                        if (entity.getArticleDto() == null) {
+                            return;
+                        }
+                        if (entity.getArticleDto().getContent() == null) {
+                            ToastUtil.showShort("无可跳转链接");
+                            return;
+                        }
+                        String data = entity.getArticleDto().getContent();
+                        mWebView.loadDataWithBaseURL(null, data, "text/html", "utf-8", null);
+                    }
+
+                    @Override
+                    protected void onFail(String message) {
+                        ToastUtil.showShort(message);
+                    }
+                });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.ll_check_version) {
+            UpdateUtils.getVersionData(mActivity, MasterUtils.getSiteID());
+            UpdateUtils.setOnUpDateCancelListener(AboutUsActivity.this);
+        } else if (v.getId() == R.id.ll_help) {
+
+        } else if (v.getId() == R.id.ll_privacy_policy) {
+            SystemUtils.jumpActivity(mActivity, PrivacyPolicyActivity.class);
+        }
+    }
+
     @Override
     public void onCancel() {
 
@@ -119,5 +145,11 @@ public class AboutUsActivity extends SBaseActivity implements View.OnClickListen
     @Override
     public void onNew(String versionCode, String versionID) {
         ToastUtil.showShort("当前已是最新版本");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mWebView.destroy();
     }
 }

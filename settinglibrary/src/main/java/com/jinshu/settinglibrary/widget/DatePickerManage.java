@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.widget.DatePicker;
 
+import com.jinshu.settinglibrary.utils.TimeUtil;
+
 /**
  * Create on 2019/10/24 15:03 by bll
  */
@@ -55,6 +57,11 @@ public class DatePickerManage {
         if (!TextUtils.isEmpty(title)) {
             mDatePickerDialog.setTitle(title);
         }
+        //设置起始日期和结束日期
+        DatePicker datePicker = mDatePickerDialog.getDatePicker();
+        datePicker.setMinDate(TimeUtil.getDatelongMills(TimeUtil.dateFormatYMD, "1964-12-12"));//起始日期1964年12月12日
+        datePicker.setMaxDate(TimeUtil.getDatelongMills(TimeUtil.dateFormatYMD, "2000-12-12"));//结束日期2000年12月12日
+
         mDatePickerDialog.show();
     }
 

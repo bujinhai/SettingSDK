@@ -24,6 +24,8 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:hint="请填写原密码"
+            android:inputType="textPassword"
+            android:maxLength="20"
             android:paddingStart="10dp"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/font_text_size_16" />
@@ -54,6 +56,8 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:hint="请输入新密码"
+            android:inputType="textPassword"
+            android:maxLength="20"
             android:paddingStart="10dp"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/font_text_size_16" />
@@ -84,6 +88,8 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:hint="再次输入新密码"
+            android:inputType="textPassword"
+            android:maxLength="20"
             android:paddingStart="10dp"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/font_text_size_16" />

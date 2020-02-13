@@ -197,7 +197,7 @@ public class NameAuthenticationActivity extends SBaseActivity implements View.On
                 if (position == 0) {
                     //拍照
                     getCardImg(1);
-                } else {
+                } else if (position == 1){
                     //相册
                     getCardImg(2);
                 }

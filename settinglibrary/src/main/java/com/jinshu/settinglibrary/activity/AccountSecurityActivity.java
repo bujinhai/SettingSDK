@@ -42,7 +42,7 @@ public class AccountSecurityActivity extends SBaseActivity implements View.OnCli
         if (v.getId() == R.id.rl_authentication){
             SystemUtils.jumpActivity(this, NameAuthenticationActivity.class);
         } else if (v.getId() == R.id.rl_bind_phone) {
-            SystemUtils.jumpActivity(this, VerifyPhoneActivity.class);
+            SystemUtils.jumpActivity(this, BindPhoneActivity.class);
         } else if (v.getId() == R.id.rl_modify_login_psw) {
             SystemUtils.jumpActivity(this, ModifyPswActivity.class);
         }

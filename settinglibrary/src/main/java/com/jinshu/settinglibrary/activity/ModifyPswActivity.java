@@ -3,7 +3,9 @@ package com.jinshu.settinglibrary.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +46,52 @@ public class ModifyPswActivity extends SBaseActivity {
         btnConfirm = findViewById(R.id.btn_confirm);
 
         ViewStyle.setBtnStyle(btnConfirm);
+
+        et_new_psw.setFocusable(false);
+        et_new_psw.setFocusableInTouchMode(false);
+        et_renew_psw.setFocusable(false);
+        et_renew_psw.setFocusableInTouchMode(false);
+        btnConfirm.setEnabled(false);
+        btnConfirm.setBackgroundResource(R.drawable.setting_bg_enable_btn);
+
+        setListener();
+    }
+
+    private void setListener() {
+
+        et_old_psw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                et_new_psw.setFocusable(true);
+                et_new_psw.setFocusableInTouchMode(true);
+                et_renew_psw.setFocusable(true);
+                et_renew_psw.setFocusableInTouchMode(true);
+            }
+        });
+
+        et_renew_psw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                btnConfirm.setEnabled(true);
+                btnConfirm.setBackgroundResource(R.drawable.setting_bg_normal_btn);
+            }
+        });
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

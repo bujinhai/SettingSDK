@@ -21,6 +21,8 @@ import com.jinshu.settinglibrary.base.basebean.SBaseResponse;
 import com.jinshu.settinglibrary.base.baserx.SRxHelper;
 import com.jinshu.settinglibrary.base.baserx.SRxSchedulers;
 import com.jinshu.settinglibrary.base.baserx.SRxSubscriber;
+import com.jinshu.settinglibrary.entity.GenderEntity;
+import com.jinshu.settinglibrary.entity.GenderInfo;
 import com.jinshu.settinglibrary.entity.ImageEntity;
 import com.jinshu.settinglibrary.entity.MemberEntity;
 import com.jinshu.settinglibrary.entity.SettingEntity;
@@ -58,12 +60,7 @@ public class PersonActivity extends SBaseActivity {
     private PersonAdapter mAdapter;
     private ArrayList<SettingEntity> userList = new ArrayList<>();
     private List<LocalMedia> selectList = new ArrayList<>();
-
-    public final static int RESULT_PICK_FROM_CAMERA = 0x211;
-    public final static int RESULT_SELECT_PICTURE = 0x202;
-    private static final int PHOTO_REQUEST_CUT = 0x203;
-    private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
-    private String mCameraTempFile = "" + System.currentTimeMillis() + PHOTO_FILE_NAME;
+    private String[] genderArray = new String[2];
 
     @Override
     public int getLayoutId() {
@@ -89,6 +86,8 @@ public class PersonActivity extends SBaseActivity {
     protected void initData(Intent intent) {
 //        getOneMemberDetail();
         updateUser();
+
+        getGender();
     }
 
     /*获取会员信息*/
@@ -149,6 +148,31 @@ public class PersonActivity extends SBaseActivity {
         mAdapter.replaceAll(userList);
     }
 
+    private void getGender() {
+        SApi.getDefault(SHostType.BASE_URL)
+                .getCategoryList(MasterUtils.addSessionID(), SAppConstant.CATEGORY_ID, "0")
+                .compose(SRxHelper.<GenderEntity>handleResult())
+                .compose(SRxSchedulers.<GenderEntity>io_main())
+                .subscribe(new SRxSubscriber<GenderEntity>(mContext, false) {
+                    @Override
+                    protected void onSuccess(GenderEntity genderEntity) {
+                        if (genderEntity.getData() == null) {
+                            return;
+                        }
+                        List<GenderInfo> infos = genderEntity.getData().getRows();
+                        genderArray = new String[infos.size()];
+                        for (int i = 0; i < infos.size(); i++) {
+                            genderArray[i] = infos.get(i).getName();
+                        }
+                    }
+
+                    @Override
+                    protected void onFail(String message) {
+                        ToastUtil.showShort(message);
+                    }
+                });
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -192,7 +216,7 @@ public class PersonActivity extends SBaseActivity {
     }
 
     private void showGenderDialog() {
-        new AlertView("修改性别", null, "取消", null, new String[]{"男", "女"},
+        new AlertView("修改性别", null, "取消", null, genderArray,
                 this, AlertView.Style.ActionSheet, new com.bigkoo.alertview.OnItemClickListener() {
             @Override
             public void onItemClick(Object o, int position) {
@@ -290,7 +314,7 @@ public class PersonActivity extends SBaseActivity {
                 if (position == 0) {
                     //拍照
                     selectPicture(1);
-                } else {
+                } else if (position == 1) {
                     //相册
                     selectPicture(2);
                 }
@@ -330,30 +354,6 @@ public class PersonActivity extends SBaseActivity {
                 .selectionMedia(selectList)// 是否传入已选图片
                 .forResult(PictureConfig.REQUEST_CAMERA);
     }
-
-    /**
-     * 选择相册
-     */
-//    private void chooseFromAlbum() {
-//        PictureSelector
-//                .create(this)
-//                .openGallery(PictureMimeType.ofImage())
-//                .theme(R.style.picture_default_style)
-//                .selectionMode(PictureConfig.SINGLE)
-//                .isCamera(false)
-//                .enableCrop(true)
-//                .compress(true)
-//                .circleDimmedLayer(false)// 是否圆形裁剪
-//                .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
-//                .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false
-//                .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
-//                .freeStyleCropEnabled(false)// 裁剪框是否可拖拽
-//                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
-//                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
-//                .minimumCompressSize(100)
-//                .selectionMedia(selectList)// 是否传入已选图片
-//                .forResult(PictureConfig.CHOOSE_REQUEST);
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

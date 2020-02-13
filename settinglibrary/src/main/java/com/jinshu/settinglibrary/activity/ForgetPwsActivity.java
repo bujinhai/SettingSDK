@@ -3,7 +3,9 @@ package com.jinshu.settinglibrary.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +19,10 @@ import com.jinshu.settinglibrary.base.basebean.SBaseResponse;
 import com.jinshu.settinglibrary.base.baserx.SRxSchedulers;
 import com.jinshu.settinglibrary.base.baserx.SRxSubscriber;
 import com.jinshu.settinglibrary.entity.SmsEntity;
+import com.jinshu.settinglibrary.entity.UserData;
 import com.jinshu.settinglibrary.utils.MasterUtils;
-import com.jinshu.settinglibrary.utils.StrUtils;
+import com.jinshu.settinglibrary.utils.SDKUtils;
+import com.jinshu.settinglibrary.utils.SystemUtils;
 import com.jinshu.settinglibrary.utils.ToastUtil;
 import com.jinshu.settinglibrary.widget.ViewStyle;
 
@@ -33,13 +37,14 @@ import java.util.TimerTask;
 
 public class ForgetPwsActivity extends SBaseActivity implements View.OnClickListener {
 
-    private EditText etPhone, etAuthCode, etPsw, etRePsw;
-    private TextView tvTimer;
+    private EditText etAuthCode, etPsw, etRePsw;
+    private TextView tvPhone, tvTimer;
     private Button btnConfirm,btnSendCode;
-    private int leftTime = 60;
+    private int leftTime = 120;
     private Timer mTimer;
     private String verifyCode;
     private MyTimerTask mTimerTask;
+    private String phone;
 
     @Override
     public int getLayoutId() {
@@ -48,9 +53,9 @@ public class ForgetPwsActivity extends SBaseActivity implements View.OnClickList
 
     @Override
     public void initView(Intent intent, @Nullable Bundle savedInstanceState) {
-        setTitle("忘记密码");
+        setTitle("手机短线找回密码");
         setBackAction();
-        etPhone = findViewById(R.id.et_phone);
+        tvPhone = findViewById(R.id.tv_phone);
         etAuthCode = findViewById(R.id.et_auth_code);
         etPsw = findViewById(R.id.et_new_psw);
         etRePsw = findViewById(R.id.et_renew_psw);
@@ -60,11 +65,91 @@ public class ForgetPwsActivity extends SBaseActivity implements View.OnClickList
 
         mTimer = new Timer();
 
-        btnSendCode.setOnClickListener(this);
-        btnConfirm.setOnClickListener(this);
+        etAuthCode.setFocusable(false);
+        etAuthCode.setFocusableInTouchMode(false);
+        etPsw.setFocusable(false);
+        etPsw.setFocusableInTouchMode(false);
+        etRePsw.setFocusable(false);
+        etRePsw.setFocusableInTouchMode(false);
+
+        btnConfirm.setEnabled(false);
+        btnConfirm.setBackgroundResource(R.drawable.setting_bg_enable_btn);
+
+        UserData data = SDKUtils.getUser();
+        if (data != null) {
+            phone = data.getPhone();
+            if (phone != null) {
+                String str = phone.substring(3, 8);
+                String newStr = phone.replace(str, "*****");
+                tvPhone.setText("请输入" + newStr + "收到的短信验证码");
+            }
+        }
 
         ViewStyle.setBtnStyle(btnSendCode);
         ViewStyle.setBtnStyle(btnConfirm);
+
+        setListener();
+    }
+
+    private void setListener() {
+        btnSendCode.setOnClickListener(this);
+        btnConfirm.setOnClickListener(this);
+
+        etAuthCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                etPsw.setFocusable(true);
+                etPsw.setFocusableInTouchMode(true);
+                etRePsw.setFocusable(true);
+                etRePsw.setFocusableInTouchMode(true);
+
+            }
+        });
+
+        etAuthCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                SystemUtils.openKeybord(etAuthCode, mActivity);
+            }
+        });
+
+        etPsw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean focus) {
+                SystemUtils.openKeybord(etPsw, mActivity);
+            }
+        });
+
+        etRePsw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean focus) {
+                SystemUtils.openKeybord(etRePsw, mActivity);
+            }
+        });
+
+        etRePsw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                btnConfirm.setEnabled(true);
+                btnConfirm.setBackgroundResource(R.drawable.setting_bg_normal_btn);
+            }
+        });
     }
 
     @Override
@@ -80,12 +165,6 @@ public class ForgetPwsActivity extends SBaseActivity implements View.OnClickList
      * 获取验证码
      */
     private void getAuthCode() {
-        String phone = etPhone.getText().toString().trim();
-        if (StrUtils.isEmpty(phone)) {
-            ToastUtil.showShort("请输入手机号");
-            return;
-        }
-        startTimer();
         SApi.getDefault(SHostType.BASE_URL)
                 .sendSMSVerifyCode(phone, "2", MasterUtils.addMasterInfo())
                 .compose(SRxSchedulers.<SBaseResponse<SmsEntity>>io_main())
@@ -95,6 +174,7 @@ public class ForgetPwsActivity extends SBaseActivity implements View.OnClickList
                         if (baseResponse.header.code == 0) {
                             if (baseResponse.body != null) {
                                 verifyCode = baseResponse.body.getAuthCode();
+                                startTimer();
                             }
                         } else {
                             ToastUtil.showShort(baseResponse.header.msg);
@@ -142,7 +222,6 @@ public class ForgetPwsActivity extends SBaseActivity implements View.OnClickList
     }
 
     private void verify() {
-        String phone = etPhone.getText().toString().trim();
         String authCode = etAuthCode.getText().toString().trim();
         String password = etPsw.getText().toString().trim();
         String rePsw = etRePsw.getText().toString().trim();
@@ -151,8 +230,8 @@ public class ForgetPwsActivity extends SBaseActivity implements View.OnClickList
             ToastUtil.showShort("验证码不正确");
             return;
         }
-        if (StrUtils.isEmpty(password)) {
-            ToastUtil.showShort("请输入密码");
+        if (password.length() < 6) {
+            ToastUtil.showShort("密码应为6～20位的数字或者字母");
             return;
         }
         if (!TextUtils.equals(password, rePsw)) {

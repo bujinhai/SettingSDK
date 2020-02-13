@@ -15,6 +15,7 @@ import com.jinshu.settinglibrary.entity.CardListEntity;
 import com.jinshu.settinglibrary.entity.CertificateStatusEntity;
 import com.jinshu.settinglibrary.entity.CommentEntity;
 import com.jinshu.settinglibrary.entity.FeedListEntity;
+import com.jinshu.settinglibrary.entity.GenderEntity;
 import com.jinshu.settinglibrary.entity.ImageEntity;
 import com.jinshu.settinglibrary.entity.InvoiceDetailEntity;
 import com.jinshu.settinglibrary.entity.InvoiceEntity;
@@ -416,6 +417,17 @@ public interface SApiService {
     Observable<SBaseResponse> updateMyMemberTitle(
             @Query("sessionID") String sessionID,
             @Query("titleID") String titleID);
+
+    /**
+     * 获取性别
+     */
+    @GET("getCategoryList.json")
+    Observable<SBaseResponse<GenderEntity>> getCategoryList(
+            @Query("sessionID") String sessionID,
+            @Query("categoryID") String categoryID,
+            @Query("depth") String depth);
+
+
 
     /**
      * 设置我的生日

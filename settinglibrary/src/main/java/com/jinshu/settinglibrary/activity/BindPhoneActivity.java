@@ -37,7 +37,7 @@ public class BindPhoneActivity extends SBaseActivity implements View.OnClickList
     private Button btnGetCode, btnSubmit;
     private Timer mTimer;
     private MyTimerTask mTimerTask;
-    private int leftTime = 60;
+    private int leftTime = 120;
     private String phone;
     private String verifyCode;
 
@@ -104,7 +104,6 @@ public class BindPhoneActivity extends SBaseActivity implements View.OnClickList
             ToastUtil.showShort("请输入手机号");
             return;
         }
-        startTimer();
         SApi.getDefault(SHostType.BASE_URL)
                 .sendSMSVerifyCode(phone, "3", MasterUtils.addMasterInfo())
                 .compose(SRxSchedulers.<SBaseResponse<SmsEntity>>io_main())
@@ -114,6 +113,7 @@ public class BindPhoneActivity extends SBaseActivity implements View.OnClickList
                         if (baseResponse.header.code == 0) {
                             if (baseResponse.body != null) {
                                 verifyCode = baseResponse.body.getAuthCode();
+                                startTimer();
                             }
 
                         } else {
