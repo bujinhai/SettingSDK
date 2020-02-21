@@ -27,11 +27,13 @@ import com.jinshu.settinglibrary.api.SHostType;
 import com.jinshu.settinglibrary.app.SAppConstant;
 import com.jinshu.settinglibrary.base.baseapp.SBaseActivity;
 import com.jinshu.settinglibrary.base.basebean.SBaseResponse;
+import com.jinshu.settinglibrary.base.baserx.SRxHelper;
 import com.jinshu.settinglibrary.base.baserx.SRxSchedulers;
 import com.jinshu.settinglibrary.base.baserx.SRxSubscriber;
 import com.jinshu.settinglibrary.entity.AddressDetailEntity;
 import com.jinshu.settinglibrary.entity.AddressEntity;
 import com.jinshu.settinglibrary.entity.AddressListEntity;
+import com.jinshu.settinglibrary.entity.CityEntity;
 import com.jinshu.settinglibrary.entity.Configure;
 import com.jinshu.settinglibrary.fragment.SelectAreaMenuDialogFragment;
 import com.jinshu.settinglibrary.utils.MasterUtils;
@@ -109,7 +111,7 @@ public class CreateAddressActivity extends SBaseActivity implements View.OnClick
         addressType = bundle.getString(SAppConstant.ADDRESS_FLAG);
         if (Configure.CREATE.name().equals(addressType)) {
             setTitle("新建收货地址");
-        } else if (Configure.UPDATE.name().equals(addressType)){
+        } else if (Configure.UPDATE.name().equals(addressType)) {
             setTitle("编辑收货地址");
             setRightTitle("删除");
             addressInfo = (AddressListEntity.DataInfo.RowsInfo) bundle.getSerializable(SAppConstant.ADDRESS_INFO);
@@ -248,7 +250,7 @@ public class CreateAddressActivity extends SBaseActivity implements View.OnClick
         } else if (v.getId() == R.id.btn_submit) {
             if (Configure.CREATE.name().equals(addressType)) {
                 createMemberAddress();
-            } else if (Configure.UPDATE.name().equals(addressType)){
+            } else if (Configure.UPDATE.name().equals(addressType)) {
                 updateMemberAddress();
             }
         }
@@ -438,7 +440,9 @@ public class CreateAddressActivity extends SBaseActivity implements View.OnClick
                 if (locationList.size() > 0) {
                     Address address = locationList.get(0);
                     String curLocation = address.getAddressLine(0);
-                    tvArea.setText(curLocation);
+
+                    etDetailAddress.setText(curLocation);
+                    queryCityIDbyName(curLocation);
                 }
             }
             LocationListener mListener = new LocationListener() {
@@ -454,22 +458,37 @@ public class CreateAddressActivity extends SBaseActivity implements View.OnClick
                 //当GPS状态发生改变的时候调用
                 @Override
                 public void onStatusChanged(String provider, int status, Bundle extras) {
-
                 }
 
                 //GPS开启的时候调用
                 @Override
                 public void onProviderEnabled(String provider) {
-
                 }
 
                 //GPS关闭的时候调用
                 @Override
                 public void onProviderDisabled(String provider) {
-
                 }
             };
             locMag.requestLocationUpdates(provider, 100, 0, mListener);
         }
+    }
+
+    private void queryCityIDbyName(String cityName) {
+        SApi.getDefault(SHostType.BASE_URL)
+                .queryCityIDbyName(MasterUtils.addSessionID(), "", cityName)
+                .compose(SRxHelper.<CityEntity>handleResult())
+                .compose(SRxSchedulers.<CityEntity>io_main())
+                .subscribe(new SRxSubscriber<CityEntity>(mContext, false) {
+                    @Override
+                    protected void onSuccess(CityEntity cityEntity) {
+
+                    }
+
+                    @Override
+                    protected void onFail(String message) {
+                        ToastUtil.showShort(message);
+                    }
+                });
     }
 }

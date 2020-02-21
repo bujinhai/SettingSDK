@@ -13,6 +13,7 @@ import com.jinshu.settinglibrary.entity.BankDetailEntity;
 import com.jinshu.settinglibrary.entity.BankListEntity;
 import com.jinshu.settinglibrary.entity.CardListEntity;
 import com.jinshu.settinglibrary.entity.CertificateStatusEntity;
+import com.jinshu.settinglibrary.entity.CityEntity;
 import com.jinshu.settinglibrary.entity.CommentEntity;
 import com.jinshu.settinglibrary.entity.FeedListEntity;
 import com.jinshu.settinglibrary.entity.GenderEntity;
@@ -23,6 +24,7 @@ import com.jinshu.settinglibrary.entity.MemberEntity;
 import com.jinshu.settinglibrary.entity.MessageDetailEntity;
 import com.jinshu.settinglibrary.entity.MessageEntity;
 import com.jinshu.settinglibrary.entity.NavigatorEntity;
+import com.jinshu.settinglibrary.entity.OneFeedListEntity;
 import com.jinshu.settinglibrary.entity.SmsEntity;
 import com.jinshu.settinglibrary.entity.UserData;
 import com.jinshu.settinglibrary.entity.VersionData;
@@ -70,11 +72,11 @@ public interface SApiService {
     @FormUrlEncoded
     @POST("getObjectDiscussList.json")
     Observable<SBaseResponse<CommentEntity>> getObjectDiscussList(
+            @Field("sessionID") String sessionID,
             @Field("currentPage") int currentPage,
             @Field("pageNumber") int pageNumber,
             @Field("objectID") String objectID,
-            @Field("sortTypeTime") String sortTypeTime,
-            @FieldMap Map<String, String> map);
+            @Field("sortTypeTime") String sortTypeTime);
 
     /**
      * 发布一个评论
@@ -280,6 +282,17 @@ public interface SApiService {
             @Query("cityID") String cityID);
 
     /**
+     * 查询省市县
+     */
+    @GET("queryCityIDbyName.json")
+    Observable<SBaseResponse<CityEntity>> queryCityIDbyName(
+            @Query("sessionID") String sessionID,
+            @Query("parentID") String parentID,//上级cityID
+            @Query("cityName") String cityName);
+
+
+
+    /**
      * 获取我的银行卡列表
      */
     @GET("getMemberBankList.json")
@@ -466,6 +479,26 @@ public interface SApiService {
             @Query("pageNumber") int pageNumber,
             @Query("sortTypeTime") String sortTypeTime);
 
+    /**
+     * 获取一个意见的反馈列表
+     */
+    @GET("getOneFeedBackList.json")
+    Observable<SBaseResponse<OneFeedListEntity>> getOneFeedBackList(
+            @Query("sessionID") String sessionID,
+            @Query("feedID") String feedID,
+            @Query("currentPage") int currentPage,
+            @Query("pageNumber") int pageNumber,
+            @Query("sortTypeTime") String sortTypeTime);
+
+    /**
+     * 阅读1个意见反馈
+     */
+    @GET("readOneFeedback .json")
+    Observable<SBaseResponse> readOneFeedback (
+            @Query("sessionID") String sessionID,
+            @Query("feedbackID") String feedbackID);
+
+
 
     /**
      * 提交一个会员发票定义
@@ -523,6 +556,7 @@ public interface SApiService {
     @GET("getMemberInvoiceDefineList.json")
     Observable<SBaseResponse<InvoiceEntity>> getMemberInvoiceDefineList(
             @Query("sessionID") String sessionID,
+            @Query("memberID") String memberID,
             @Query("invoiceType") int invoiceType,
             @Query("currentPage") int currentPage,
             @Query("pageNumber") int pageNumber,

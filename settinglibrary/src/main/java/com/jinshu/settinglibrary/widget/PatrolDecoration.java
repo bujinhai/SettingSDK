@@ -17,16 +17,16 @@ public class PatrolDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         int position = parent.getChildAdapterPosition(view);
         if (position % 3 == 0) {
-            outRect.right = dip2px(4.5f);
+            outRect.right = dip2px(2f);
         } else if (position % 3 == 1) {
-            outRect.left = dip2px(4.5f);
-            outRect.right = dip2px(4.5f);
+            outRect.left = dip2px(2f);
+            outRect.right = dip2px(2f);
         } else if (position % 3 == 2) {
-            outRect.left = dip2px(4.5f);
+            outRect.left = dip2px(2f);
         }
 
         if (position / 3 == 0) {
-            outRect.bottom = dip2px(9f);
+            outRect.bottom = dip2px(4f);
         }
     }
 

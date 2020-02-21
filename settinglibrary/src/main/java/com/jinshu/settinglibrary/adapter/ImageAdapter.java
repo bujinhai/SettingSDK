@@ -47,7 +47,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public int getItemCount() {
-        if (mediaList.size() < 5) {
+        if (mediaList.size() < 3) {
             return mediaList.size() + 1;
         } else {
             return mediaList.size();
@@ -79,7 +79,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(@NonNull final ImageViewHolder holder, final int position) {
         if (getItemViewType(position) == TYPE_CAMERA) {
-            holder.ivImage.setImageResource(R.drawable.ic_camera);
+            holder.ivImage.setImageResource(R.drawable.setting_add_photo);
             holder.ivImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

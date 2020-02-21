@@ -40,7 +40,7 @@ public class SRxHelper {
             public ObservableSource<T> apply(Observable<SBaseResponse<T>> upstream) {
                 return upstream.flatMap(new Function<SBaseResponse<T>, ObservableSource<T>>() {
                     @Override
-                    public ObservableSource<T> apply(SBaseResponse<T> result) throws Exception {
+                    public ObservableSource<T> apply(SBaseResponse<T> result) {
                         if (result.success()) {
                             return createData(result.body);
                         } else if (result.faild()) {
@@ -68,7 +68,7 @@ public class SRxHelper {
     private static <T> Observable<T> createData(final T data) {
         return Observable.create(new ObservableOnSubscribe<T>() {
             @Override
-            public void subscribe(ObservableEmitter<T> subscriber) throws Exception {
+            public void subscribe(ObservableEmitter<T> subscriber) {
                 try {
                     subscriber.onNext(data);
                     subscriber.onComplete();

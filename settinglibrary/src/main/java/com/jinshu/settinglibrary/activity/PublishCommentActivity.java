@@ -237,11 +237,11 @@ public class PublishCommentActivity extends SBaseActivity implements ImageAdapte
                     .isCamera(false);
         }
         model.theme(R.style.picture_default_style)
-                .maxSelectNum(1)// 最大图片选择数量 int
+                .maxSelectNum(3)// 最大图片选择数量 int
                 .minSelectNum(1)// 最小选择数量 int
                 .imageSpanCount(4)// 每行显示个数 int
-                .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
-                .enableCrop(true)// 是否裁剪
+                .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                .enableCrop(false)// 是否裁剪
                 .compress(true)// 是否压缩
                 .circleDimmedLayer(false)// 是否圆形裁剪
                 .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
@@ -260,7 +260,7 @@ public class PublishCommentActivity extends SBaseActivity implements ImageAdapte
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case PictureConfig.CHOOSE_REQUEST:
+                case PictureConfig.REQUEST_CAMERA:
                     // 图片、视频、音频选择结果回调
                     pictureList = PictureSelector.obtainMultipleResult(data);
                     mImageAdapter.setList(pictureList);

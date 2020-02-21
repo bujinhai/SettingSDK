@@ -97,10 +97,12 @@ public abstract class SRxSubscriber<T> implements Observer<T> {
             //网络
             onFail(SDKUtils.getAppContext().getString(R.string.setting_no_net));
         } else if (e instanceof HttpException) {
-            onFail("服务器异常 404");
+            onFail("正在链接服务器，请稍候...");
+        } else if (e instanceof RuntimeException) {
+            onFail(e.getMessage());
         } else {
             //其它
-            onFail(e.getMessage());
+            onFail("正在链接服务器，请稍候...");
         }
     }
 

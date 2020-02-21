@@ -38,9 +38,9 @@ public class FeedBackAdapter extends SCommonRecycleViewAdapter<FeedListEntity.Da
     }
 
     private void setItemPhotoValues(SViewHolderHelper helper, FeedListEntity.DataInfo.RowsInfo info) {
-        int PhotoThreeHeight = ScreenUtils.dip2px(mContext, 90);
-        int PhotoTwoHeight = ScreenUtils.dip2px(mContext, 110);
-        int PhotoOneHeight = ScreenUtils.dip2px(mContext, 130);
+        int PhotoThreeHeight = ScreenUtils.dip2px(mContext, 106);
+        int PhotoTwoHeight = ScreenUtils.dip2px(mContext, 106);
+        int PhotoOneHeight = ScreenUtils.dip2px(mContext, 106);
         String imgSrcLeft = null;
         String imgSrcMiddle = null;
         String imgSrcRight = null;

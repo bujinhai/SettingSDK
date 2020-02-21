@@ -170,4 +170,18 @@ public final class SystemUtils {
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
                 InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
+
+    /**
+     * 隐藏系统键盘
+     * <p>
+     * <br>
+     * <b>警告</b> 必须是确定键盘显示时才能调用
+     */
+    public static void hideKeyBoard(Activity aty) {
+        ((InputMethodManager) aty
+                .getSystemService(Context.INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow(
+                        aty.getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 }

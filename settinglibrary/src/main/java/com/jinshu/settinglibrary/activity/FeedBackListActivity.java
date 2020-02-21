@@ -10,17 +10,21 @@ import com.jinshu.settinglibrary.R;
 import com.jinshu.settinglibrary.adapter.FeedBackAdapter;
 import com.jinshu.settinglibrary.api.SApi;
 import com.jinshu.settinglibrary.api.SHostType;
+import com.jinshu.settinglibrary.app.SAppConstant;
 import com.jinshu.settinglibrary.base.baseapp.SBaseActivity;
+import com.jinshu.settinglibrary.base.basebean.SBaseResponse;
 import com.jinshu.settinglibrary.base.baserx.SRxHelper;
 import com.jinshu.settinglibrary.base.baserx.SRxSchedulers;
 import com.jinshu.settinglibrary.base.baserx.SRxSubscriber;
 import com.jinshu.settinglibrary.entity.FeedListEntity;
 import com.jinshu.settinglibrary.recyclerview.animation.ScaleInAnimation;
 import com.jinshu.settinglibrary.recyclerview.irc.IRecyclerView;
+import com.jinshu.settinglibrary.recyclerview.irc.OnItemClickListener;
 import com.jinshu.settinglibrary.recyclerview.irc.OnLoadMoreListener;
 import com.jinshu.settinglibrary.recyclerview.irc.OnRefreshListener;
 import com.jinshu.settinglibrary.recyclerview.widget.LoadMoreFooterView;
 import com.jinshu.settinglibrary.utils.MasterUtils;
+import com.jinshu.settinglibrary.utils.SystemUtils;
 import com.jinshu.settinglibrary.utils.ToastUtil;
 import com.jinshu.settinglibrary.widget.LoadingTip;
 
@@ -55,6 +59,10 @@ public class FeedBackListActivity extends SBaseActivity implements OnRefreshList
         mIrc.setOnRefreshListener(this);
         mIrc.setOnLoadMoreListener(this);
 
+        setListener();
+    }
+
+    private void setListener() {
         mLoadingTip.setOnReloadListener(new LoadingTip.onReloadListener() {
             @Override
             public void reload() {
@@ -62,7 +70,38 @@ public class FeedBackListActivity extends SBaseActivity implements OnRefreshList
             }
         });
 
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, Object o, int position) {
+                FeedListEntity.DataInfo.RowsInfo info = (FeedListEntity.DataInfo.RowsInfo) o;
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(SAppConstant.FEED_INFO, info);
+                SystemUtils.jumpActivity(mActivity, FeedBackDetailActivity.class, bundle);
+
+                readOneFeedBack(info.getFeedID());
+            }
+        });
     }
+
+    private void readOneFeedBack(String feedID) {
+        SApi.getDefault(SHostType.BASE_URL)
+                .readOneFeedback(MasterUtils.addSessionID(), feedID)
+                .compose(SRxSchedulers.<SBaseResponse>io_main())
+                .subscribe(new SRxSubscriber<SBaseResponse>(mContext, false) {
+                    @Override
+                    protected void onSuccess(SBaseResponse response) {
+                        if (response.faild()) {
+
+                        }
+                    }
+
+                    @Override
+                    protected void onFail(String message) {
+                        ToastUtil.showShort(message);
+                    }
+                });
+    }
+
 
     @Override
     protected void initData(Intent intent) {

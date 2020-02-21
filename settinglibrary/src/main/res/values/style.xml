@@ -90,10 +90,10 @@
 
     <style name="news_summary_photo_iv">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:scaleType">fitXY</item>
     </style>
     <!--统一按钮样式-->
     <style name="setting_button_view">

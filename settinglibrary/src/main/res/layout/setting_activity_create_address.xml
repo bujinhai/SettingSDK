@@ -86,17 +86,6 @@
             android:hint="省市区县、乡镇等"
             android:textSize="@dimen/font_text_size_14" />
 
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:drawableStart="@drawable/setting_location"
-            android:drawablePadding="5dp"
-            android:gravity="center_vertical"
-            android:text="定位"
-            android:textColor="@color/setting_main_text_color"
-            android:textSize="@dimen/font_text_size_14" />
-
     </LinearLayout>
 
     <View style="@style/view_line" />
@@ -120,7 +109,18 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@null"
+            android:layout_marginEnd="10dp"
             android:hint="街道、楼牌号等"
+            android:textSize="@dimen/font_text_size_14" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/setting_location"
+            android:drawablePadding="5dp"
+            android:text="定位"
+            android:textColor="@color/setting_main_text_color"
             android:textSize="@dimen/font_text_size_14" />
 
     </LinearLayout>

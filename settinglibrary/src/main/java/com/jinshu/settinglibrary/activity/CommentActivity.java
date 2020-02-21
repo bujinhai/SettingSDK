@@ -101,7 +101,7 @@ public class CommentActivity extends SBaseActivity implements OnRefreshListener,
 
     private void getObjectDiscussList(final boolean isRefresh) {
         SApi.getDefault(SHostType.BASE_URL)
-                .getObjectDiscussList(currentPage, pageNumber, objectID, "1", MasterUtils.addMasterInfo())
+                .getObjectDiscussList(MasterUtils.addSessionID(), currentPage, pageNumber, objectID, "1")
                 .compose(SRxSchedulers.<SBaseResponse<CommentEntity>>io_main())
                 .subscribe(new SRxSubscriber<SBaseResponse<CommentEntity>>(mContext, false) {
 

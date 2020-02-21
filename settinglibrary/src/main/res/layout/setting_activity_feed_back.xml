@@ -13,7 +13,7 @@
         android:background="@color/setting_white"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:layout_margin="10dp"
@@ -23,48 +23,33 @@
             <EditText
                 android:id="@+id/et_message"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:background="@null"
                 android:gravity="start"
                 android:hint="不能愉快的使用现有功能？请上传相关页面截图能方便我们快速解决问题呦～"
                 android:padding="10dp"
+                android:textCursorDrawable="@drawable/setting_et_cursor"
                 android:textSize="@dimen/font_text_size_14" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_text_number"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="0/500"
+                android:textSize="@dimen/font_text_size_14" />
 
-                <LinearLayout
-                    android:id="@+id/ll_img_root"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="10dp">
+        </RelativeLayout>
 
-                    <ImageView
-                        android:id="@+id/iv_camera"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_camera" />
-
-                </LinearLayout>
-
-
-                <TextView
-                    android:id="@+id/tv_text_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:textSize="@dimen/font_text_size_14"
-                    android:text="0/500" />
-
-            </LinearLayout>
-        </LinearLayout>
+        <com.jinshu.settinglibrary.view.MyRecyclerView
+            android:id="@+id/rv_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
 
     </LinearLayout>
 
@@ -88,8 +73,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
+            android:cursorVisible="true"
             android:hint="请输入手机号"
+            android:inputType="phone"
             android:paddingStart="5dp"
+            android:textCursorDrawable="@drawable/setting_et_cursor"
             android:textSize="@dimen/font_text_size_16" />
 
     </LinearLayout>
@@ -103,9 +91,9 @@
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/setting_btn_height"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/setting_bg_btn"
         android:text="提交"
         android:textColor="@color/setting_white"

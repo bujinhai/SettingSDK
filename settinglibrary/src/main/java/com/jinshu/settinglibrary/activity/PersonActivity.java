@@ -245,9 +245,9 @@ public class PersonActivity extends SBaseActivity {
                         }
                         MemberEntity entity = SDKUtils.getMember();
                         if (type == 1) {
-                            entity.setTitleID("男");
+                            entity.setTitleID(genderArray[0]);
                         } else if (type == 2) {
-                            entity.setTitleID("女");
+                            entity.setTitleID(genderArray[1]);
                         }
                         SDKUtils.saveMember(entity);
                         updateUser();

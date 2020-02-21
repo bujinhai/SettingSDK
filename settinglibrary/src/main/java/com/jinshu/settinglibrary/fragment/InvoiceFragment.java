@@ -19,12 +19,14 @@ import com.jinshu.settinglibrary.base.baserx.SRxSchedulers;
 import com.jinshu.settinglibrary.base.baserx.SRxSubscriber;
 import com.jinshu.settinglibrary.entity.Configure;
 import com.jinshu.settinglibrary.entity.InvoiceEntity;
+import com.jinshu.settinglibrary.entity.UserData;
 import com.jinshu.settinglibrary.recyclerview.irc.IRecyclerView;
 import com.jinshu.settinglibrary.recyclerview.irc.OnItemClickListener;
 import com.jinshu.settinglibrary.recyclerview.irc.OnLoadMoreListener;
 import com.jinshu.settinglibrary.recyclerview.irc.OnRefreshListener;
 import com.jinshu.settinglibrary.recyclerview.widget.LoadMoreFooterView;
 import com.jinshu.settinglibrary.utils.MasterUtils;
+import com.jinshu.settinglibrary.utils.SDKUtils;
 import com.jinshu.settinglibrary.utils.SystemUtils;
 import com.jinshu.settinglibrary.utils.ToastUtil;
 import com.jinshu.settinglibrary.widget.LoadingTip;
@@ -47,6 +49,7 @@ public class InvoiceFragment extends SBaseFragment implements OnRefreshListener,
     private InvoiceAdapter mAdapter;
 
     private boolean isGoods = false;
+    private String memberID;
 
     @Override
     protected int getLayoutResource() {
@@ -77,13 +80,19 @@ public class InvoiceFragment extends SBaseFragment implements OnRefreshListener,
                 mIrc.setAdapter(mAdapter);
             }
         }
+        UserData userData = SDKUtils.getUser();
+        if (userData == null) {
+            return;
+        }
+        memberID = userData.getMemberID();
+
         setListener();
         getInvoice(true);
     }
 
     private void getInvoice(final boolean isRefresh) {
         SApi.getDefault(SHostType.BASE_URL)
-                .getMemberInvoiceDefineList(MasterUtils.addSessionID(), invoiceType,
+                .getMemberInvoiceDefineList(MasterUtils.addSessionID(), memberID, invoiceType,
                         currentPage, pageNumber, "1")
                 .compose(SRxHelper.<InvoiceEntity>handleResult())
                 .compose(SRxSchedulers.<InvoiceEntity>io_main())

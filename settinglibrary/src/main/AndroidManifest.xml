@@ -25,25 +25,28 @@
         <activity android:name=".activity.BankCardListActivity" />
         <activity android:name=".activity.CreateBankCardActivity" />
         <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.AccountSecurityActivity"/>
-        <activity android:name=".activity.PaymentActivity"/>
-        <activity android:name=".activity.PersonActivity"/>
-        <activity android:name=".activity.ModifyNickActivity"/>
-        <activity android:name=".activity.QRCodeActivity"/>
-        <activity android:name=".activity.ArticleActivity"/>
-        <activity android:name=".activity.ArticleDetailActivity"/>
-        <activity android:name=".activity.FeedBackActivity"/>
-        <activity android:name=".activity.FeedBackListActivity"/>
-        <activity android:name=".activity.InvoiceListActivity"/>
-        <activity android:name=".activity.InvoiceActivity"/>
-        <activity android:name=".activity.ReceiptDetailActivity"/>
-        <activity android:name=".activity.MessageActivity"/>
+        <activity android:name=".activity.AccountSecurityActivity" />
+        <activity android:name=".activity.PaymentActivity" />
+        <activity android:name=".activity.PersonActivity" />
+        <activity android:name=".activity.ModifyNickActivity" />
+        <activity android:name=".activity.QRCodeActivity" />
+        <activity android:name=".activity.ArticleActivity" />
+        <activity android:name=".activity.ArticleDetailActivity" />
+        <activity
+            android:name=".activity.FeedBackActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity android:name=".activity.FeedBackListActivity" />
+        <activity android:name=".activity.InvoiceListActivity" />
+        <activity android:name=".activity.InvoiceActivity" />
+        <activity android:name=".activity.ReceiptDetailActivity" />
+        <activity android:name=".activity.MessageActivity" />
         <activity android:name=".activity.WalletActivity" />
         <activity android:name=".activity.AccountActivity" />
         <activity android:name=".activity.WithdrawActivity" />
         <activity android:name=".activity.RechargeActivity" />
         <activity android:name=".activity.MessageDetailActivity" />
         <activity android:name=".activity.PrivacyPolicyActivity" />
+        <activity android:name=".activity.FeedBackDetailActivity" />
 
     </application>
 

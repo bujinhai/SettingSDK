@@ -1,5 +1,6 @@
 package com.jinshu.settinglibrary.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  */
 
 
-public class FeedListEntity {
+public class FeedListEntity implements Serializable{
 
 
     /**
@@ -24,7 +25,7 @@ public class FeedListEntity {
         this.data = data;
     }
 
-    public static class DataInfo {
+    public static class DataInfo implements Serializable{
         /**
          * total : 1
          * currentPage : 1
@@ -99,7 +100,7 @@ public class FeedListEntity {
             this.rows = rows;
         }
 
-        public static class RowsInfo {
+        public static class RowsInfo implements Serializable {
             /**
              * feedID : 2d89ea16177841d58d0d3f4f8d47a054
              * title : 测试
@@ -121,7 +122,7 @@ public class FeedListEntity {
             private String memberID;
             private String memberName;
             private String memberShortName;
-            private Object memberAvatar;
+            private String memberAvatar;
             private long submitTime;
             private String submitTimeStr;
             private int multipleType;
@@ -183,11 +184,11 @@ public class FeedListEntity {
                 this.memberShortName = memberShortName;
             }
 
-            public Object getMemberAvatar() {
+            public String getMemberAvatar() {
                 return memberAvatar;
             }
 
-            public void setMemberAvatar(Object memberAvatar) {
+            public void setMemberAvatar(String memberAvatar) {
                 this.memberAvatar = memberAvatar;
             }
 

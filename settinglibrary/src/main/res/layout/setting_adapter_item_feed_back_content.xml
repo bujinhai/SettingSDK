@@ -22,13 +22,13 @@
             android:layout_height="wrap_content"
             android:textColor="@color/setting_main_text_color"
             android:textSize="@dimen/font_text_size_14"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="6dp"
             tools:text="爽肤水的肤色我热热饭是电风扇的" />
 
         <LinearLayout
             android:id="@+id/feed_back_photo_iv_group"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:gravity="center"
             android:orientation="horizontal">
 
