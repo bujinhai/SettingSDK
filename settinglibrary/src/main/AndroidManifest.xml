@@ -12,7 +12,8 @@
         <activity android:name=".activity.AddressActivity" />
         <activity android:name=".activity.ForgetPwsActivity" />
         <activity android:name=".activity.ModifyPswActivity" />
-        <activity android:name=".activity.NameAuthenticationActivity" />
+        <activity android:name=".activity.NameAuthenticationActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
         <activity android:name=".activity.AuthenticationDetailActivity" />
         <activity android:name=".activity.SetTradePswActivity" />
         <activity android:name=".activity.ForgetTradePswActivity" />

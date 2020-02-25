@@ -18,9 +18,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:background="@color/setting_white"
             android:layout_marginTop="30dp"
+            android:background="@color/setting_white"
+            android:gravity="center_vertical"
             android:padding="10dp">
 
             <TextView
@@ -39,6 +39,7 @@
                 android:background="@null"
                 android:hint="请输入姓名"
                 android:textColor="@color/setting_minor_text_color"
+                android:textCursorDrawable="@drawable/setting_et_cursor"
                 android:textSize="@dimen/font_text_size_14" />
 
         </LinearLayout>
@@ -48,8 +49,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
             android:background="@color/white"
+            android:gravity="center_vertical"
             android:padding="10dp">
 
             <TextView
@@ -66,9 +67,10 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:inputType="number"
                 android:hint="请输入身份证号"
+                android:inputType="number"
                 android:textColor="@color/setting_minor_text_color"
+                android:textCursorDrawable="@drawable/setting_et_cursor"
                 android:textSize="@dimen/font_text_size_14" />
 
         </LinearLayout>
@@ -77,10 +79,10 @@
             android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_btn_height"
-            android:background="@drawable/setting_bg_btn"
-            android:layout_marginTop="50dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="10dp"
+            android:background="@drawable/setting_bg_btn"
             android:text="下一步"
             android:textColor="@color/white"
             android:textSize="@dimen/font_text_size_18" />
@@ -91,8 +93,8 @@
         android:id="@+id/ll_id_card_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/white"
+        android:orientation="vertical"
         android:visibility="gone">
 
         <TextView
@@ -208,8 +210,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_verify_result"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
             <Button

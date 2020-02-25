@@ -245,9 +245,9 @@ public class PersonActivity extends SBaseActivity {
                         }
                         MemberEntity entity = SDKUtils.getMember();
                         if (type == 1) {
-                            entity.setTitleID(genderArray[0]);
+                            entity.setTitleName(genderArray[0]);
                         } else if (type == 2) {
-                            entity.setTitleID(genderArray[1]);
+                            entity.setTitleName(genderArray[1]);
                         }
                         SDKUtils.saveMember(entity);
                         updateUser();
@@ -351,7 +351,7 @@ public class PersonActivity extends SBaseActivity {
                 .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
                 .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
                 .minimumCompressSize(100)// 小于100kb的图片不压缩
-                .selectionMedia(selectList)// 是否传入已选图片
+                .selectionMedia(null)// 是否传入已选图片
                 .forResult(PictureConfig.REQUEST_CAMERA);
     }
 

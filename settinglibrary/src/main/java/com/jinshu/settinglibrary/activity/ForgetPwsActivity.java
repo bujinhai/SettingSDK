@@ -53,7 +53,7 @@ public class ForgetPwsActivity extends SBaseActivity implements View.OnClickList
 
     @Override
     public void initView(Intent intent, @Nullable Bundle savedInstanceState) {
-        setTitle("手机短线找回密码");
+        setTitle("手机短信找回密码");
         setBackAction();
         tvPhone = findViewById(R.id.tv_phone);
         etAuthCode = findViewById(R.id.et_auth_code);

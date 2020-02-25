@@ -27,7 +27,7 @@
             android:inputType="textPassword"
             android:maxLength="20"
             android:paddingStart="10dp"
-            android:textCursorDrawable="@null"
+            android:textCursorDrawable="@drawable/setting_et_cursor"
             android:textSize="@dimen/font_text_size_16" />
 
     </LinearLayout>
@@ -59,7 +59,7 @@
             android:inputType="textPassword"
             android:maxLength="20"
             android:paddingStart="10dp"
-            android:textCursorDrawable="@null"
+            android:textCursorDrawable="@drawable/setting_et_cursor"
             android:textSize="@dimen/font_text_size_16" />
 
     </LinearLayout>
@@ -91,7 +91,7 @@
             android:inputType="textPassword"
             android:maxLength="20"
             android:paddingStart="10dp"
-            android:textCursorDrawable="@null"
+            android:textCursorDrawable="@drawable/setting_et_cursor"
             android:textSize="@dimen/font_text_size_16" />
 
     </LinearLayout>

@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">SettingLibrary</string>
 
-    <string name="setting_net_error">网络访问错误，请稍后再试</string>
+    <string name="setting_net_error">网络访问错误，请稍候再试</string>
     <string name="setting_empty">还没有数据哦</string>
-    <string name="setting_loading">请稍后&#8230;</string>
+    <string name="setting_loading">请稍候&#8230;</string>
     <string name="setting_reload">重新尝试</string>
     <string name="setting_no_net">网络不可用,请检查你的网络</string>
     <string name="setting_no_data">空数据</string>

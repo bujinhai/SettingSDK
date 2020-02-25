@@ -28,6 +28,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="请填写收货人姓名"
+            android:textCursorDrawable="@drawable/setting_et_cursor"
             android:textSize="@dimen/font_text_size_14" />
 
     </LinearLayout>
@@ -54,8 +55,9 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@null"
-            android:inputType="phone"
             android:hint="请填写收货人手机号"
+            android:inputType="phone"
+            android:textCursorDrawable="@drawable/setting_et_cursor"
             android:textSize="@dimen/font_text_size_14" />
 
     </LinearLayout>
@@ -79,11 +81,12 @@
             android:id="@+id/tv_area"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@null"
+            android:gravity="center_vertical"
             android:hint="省市区县、乡镇等"
+            android:textCursorDrawable="@drawable/setting_et_cursor"
             android:textSize="@dimen/font_text_size_14" />
 
     </LinearLayout>
@@ -107,10 +110,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:background="@null"
-            android:layout_marginEnd="10dp"
             android:hint="街道、楼牌号等"
+            android:textCursorDrawable="@drawable/setting_et_cursor"
             android:textSize="@dimen/font_text_size_14" />
 
         <TextView
@@ -150,7 +154,7 @@
             android:layout_marginStart="50dp"
             android:background="@drawable/setting_select_sign"
             android:text="家"
-            android:textSize="@dimen/font_text_size_14"/>
+            android:textSize="@dimen/font_text_size_14" />
 
         <Button
             android:id="@+id/btn_company"
@@ -159,7 +163,7 @@
             android:layout_marginStart="20dp"
             android:background="@drawable/setting_select_sign"
             android:text="公司"
-            android:textSize="@dimen/font_text_size_14"/>
+            android:textSize="@dimen/font_text_size_14" />
 
         <Button
             android:id="@+id/btn_school"
@@ -168,7 +172,7 @@
             android:layout_marginStart="20dp"
             android:background="@drawable/setting_select_sign"
             android:text="学校"
-            android:textSize="@dimen/font_text_size_14"/>
+            android:textSize="@dimen/font_text_size_14" />
 
     </LinearLayout>
 
@@ -176,8 +180,8 @@
         android:id="@+id/rl_default_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tv_default_address"
@@ -191,17 +195,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_default_address"
-            android:text="提醒：每次下单会默认推荐使用改地址"
             android:layout_marginTop="5dp"
+            android:text="提醒：每次下单会默认推荐使用改地址"
             android:textColor="@color/setting_main_text_color"
-            android:textSize="@dimen/font_text_size_12"/>
+            android:textSize="@dimen/font_text_size_12" />
 
         <ImageView
             android:id="@+id/iv_default_address"
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/setting_unselect"/>
+            android:src="@drawable/setting_unselect" />
     </RelativeLayout>
 
     <View
@@ -212,14 +216,14 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/setting_btn_height"
-        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/setting_bg_btn"
         android:text="提交"

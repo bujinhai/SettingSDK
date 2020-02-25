@@ -171,6 +171,7 @@ public class NameAuthenticationActivity extends SBaseActivity implements View.On
             showDialog();
         } else if (v.getId() == R.id.btn_next) {
             if (check()) {
+                SystemUtils.hideKeyBoard(mActivity);
                 llValidate.setVisibility(View.GONE);
                 llCardImg.setVisibility(View.VISIBLE);
             }
@@ -197,7 +198,7 @@ public class NameAuthenticationActivity extends SBaseActivity implements View.On
                 if (position == 0) {
                     //拍照
                     getCardImg(1);
-                } else if (position == 1){
+                } else if (position == 1) {
                     //相册
                     getCardImg(2);
                 }
@@ -229,7 +230,7 @@ public class NameAuthenticationActivity extends SBaseActivity implements View.On
                 .circleDimmedLayer(false)// 是否圆形裁剪
                 .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
                 .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false
-                .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                .withAspectRatio(16, 9)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
                 .freeStyleCropEnabled(false)// 裁剪框是否可拖拽
                 .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
                 .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false

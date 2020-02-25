@@ -43,6 +43,7 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="10dp"
                 android:background="@color/white"
+                android:textCursorDrawable="@drawable/setting_et_cursor"
                 android:hint="请输入短信验证码"
                 android:paddingStart="10dp" />
 

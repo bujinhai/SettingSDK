@@ -1,55 +1,20 @@
 package com.jinshu.settinglibrary.utils;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.jinshu.settinglibrary.R;
 
-import java.io.File;
-
-@SuppressLint("SimpleDateFormat")
 public final class SystemUtils {
 
-    /**
-     * 获取手机系统SDK版本
-     *
-     * @return 如API 17 则返回 17
-     */
-    public static int getSDKVersion() {
-        return Build.VERSION.SDK_INT;
-    }
-
-    /**
-     * 获取系统版本
-     *
-     * @return 形如2.3.3
-     */
-    public static String getSystemVersion() {
-        return Build.VERSION.RELEASE;
-    }
-
-    /**
-     * 安装apk
-     *
-     * @param context
-     * @param file
-     */
-    public static void installApk(Context context, File file) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        FileProviderUtils.setIntentDataAndType(context, intent, "application/vnd.android.package-archive",
-                file, true);
-        context.startActivity(intent);
-    }
 
     /**
      * 获取当前应用程序的版本号
@@ -154,7 +119,7 @@ public final class SystemUtils {
      * @param packageName 包名
      * @return intent
      */
-    public static Intent getLaunchAppIntent(Context context, String packageName) {
+    private static Intent getLaunchAppIntent(Context context, String packageName) {
         return context.getPackageManager().getLaunchIntentForPackage(packageName);
     }
 
@@ -166,9 +131,11 @@ public final class SystemUtils {
      */
     public static void openKeybord(EditText mEditText, Activity aty) {
         InputMethodManager imm = (InputMethodManager) aty.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
-                InputMethodManager.HIDE_IMPLICIT_ONLY);
+        if (imm != null) {
+            mEditText.requestFocus();
+            imm.showSoftInput(mEditText, InputMethodManager.SHOW_FORCED);
+            imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        }
     }
 
     /**
@@ -178,10 +145,12 @@ public final class SystemUtils {
      * <b>警告</b> 必须是确定键盘显示时才能调用
      */
     public static void hideKeyBoard(Activity aty) {
-        ((InputMethodManager) aty
-                .getSystemService(Context.INPUT_METHOD_SERVICE))
-                .hideSoftInputFromWindow(
-                        aty.getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+        View v = aty.getCurrentFocus();
+        if (v != null) {
+            InputMethodManager imm = (InputMethodManager) aty.getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null && imm.isActive()) {
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        }
     }
 }
