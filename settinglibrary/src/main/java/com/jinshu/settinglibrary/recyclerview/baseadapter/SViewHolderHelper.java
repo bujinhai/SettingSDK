@@ -86,7 +86,9 @@ public class SViewHolderHelper extends RecyclerView.ViewHolder {
      */
     public SViewHolderHelper setText(int viewId, String text) {
         TextView tv = getView(viewId);
-        tv.setText(text);
+        if (tv != null) {
+            tv.setText(text);
+        }
         return this;
     }
 

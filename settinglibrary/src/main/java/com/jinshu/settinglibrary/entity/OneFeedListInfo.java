@@ -8,7 +8,7 @@ public class OneFeedListInfo {
 
     private String feedbackID;
     private String content;
-    private String backdate;
+    private long backdate;
     private String readTime;
     private String userID;
     private String userName;
@@ -29,11 +29,11 @@ public class OneFeedListInfo {
         this.content = content;
     }
 
-    public String getBackdate() {
+    public long getBackdate() {
         return backdate;
     }
 
-    public void setBackdate(String backdate) {
+    public void setBackdate(long backdate) {
         this.backdate = backdate;
     }
 

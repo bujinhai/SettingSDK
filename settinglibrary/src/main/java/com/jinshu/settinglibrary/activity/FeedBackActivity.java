@@ -136,6 +136,7 @@ public class FeedBackActivity extends SBaseActivity implements View.OnClickListe
 
     @Override
     public void onAddPicClick() {
+        SystemUtils.hideKeyBoard(mActivity);
         showDialog();
     }
 
@@ -173,7 +174,7 @@ public class FeedBackActivity extends SBaseActivity implements View.OnClickListe
                     .isCamera(false);
         }
         model.theme(R.style.picture_default_style)
-                .maxSelectNum(3)// 最大图片选择数量 int
+                .maxSelectNum(9)// 最大图片选择数量 int
                 .minSelectNum(1)// 最小选择数量 int
                 .imageSpanCount(4)// 每行显示个数 int
                 .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE

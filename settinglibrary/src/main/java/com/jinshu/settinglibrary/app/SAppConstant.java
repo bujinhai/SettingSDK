@@ -31,6 +31,7 @@ public class SAppConstant {
     public static final int ADDRESS_CODE = 1002;
     public static final int BANK_CARD_CODE = 1003;
     public static final int INVOICE_CODE = 1004;
+    public static final int COMPANY_INVOICE_CODE = 1005;
     public static final String COMMENT_INFO = "COMMENT_INFO";
     public static final String PHONE = "PHONE";
     public static final String AUTH_CODE = "AUTH_CODE";

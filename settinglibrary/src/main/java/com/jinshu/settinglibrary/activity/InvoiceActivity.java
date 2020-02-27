@@ -270,7 +270,9 @@ public class InvoiceActivity extends SBaseActivity implements View.OnClickListen
                             ToastUtil.showShort(response.header.msg);
                             return;
                         }
-                        setResult(RESULT_OK);
+                        Intent intent = new Intent();
+                        intent.putExtra(SAppConstant.INVOICE_TYPE, invoiceType);
+                        setResult(RESULT_OK, intent);
                         finish();
                     }
 
@@ -338,7 +340,9 @@ public class InvoiceActivity extends SBaseActivity implements View.OnClickListen
                             ToastUtil.showShort(response.header.msg);
                             return;
                         }
-                        setResult(RESULT_OK);
+                        Intent intent = new Intent();
+                        intent.putExtra(SAppConstant.INVOICE_TYPE, invoiceType);
+                        setResult(RESULT_OK, intent);
                         finish();
                     }
 

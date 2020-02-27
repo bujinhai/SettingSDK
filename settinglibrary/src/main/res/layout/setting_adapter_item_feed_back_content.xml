@@ -20,17 +20,34 @@
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
             android:textColor="@color/setting_main_text_color"
             android:textSize="@dimen/font_text_size_14"
-            android:layout_marginBottom="6dp"
-            tools:text="爽肤水的肤色我热热饭是电风扇的" />
+            tools:text="提交内容：爽肤水的肤色我热热饭是电风扇的" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/setting_main_text_color"
+            android:textSize="@dimen/font_text_size_14"
+            tools:text="提交时间：05-28 20:09" />
 
         <LinearLayout
             android:id="@+id/feed_back_photo_iv_group"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
+
+            <com.jinshu.settinglibrary.view.NineGridlayout
+                android:id="@+id/iv_grid_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"/>
+
 
             <ImageView
                 android:id="@+id/feed_back_photo_iv_left"
@@ -48,16 +65,7 @@
                 tools:src="@drawable/ic_camera" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:textColor="@color/setting_main_text_color"
-            android:textSize="@dimen/font_text_size_14"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            tools:text="05-28 20:09" />
+
 
     </LinearLayout>
 

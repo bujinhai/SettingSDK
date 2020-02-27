@@ -38,7 +38,7 @@ import io.reactivex.disposables.Disposable;
  */
 
 
-public class InvoiceFragment extends SBaseFragment implements OnRefreshListener, OnLoadMoreListener {
+public class CompanyInvoiceFragment extends SBaseFragment implements OnRefreshListener, OnLoadMoreListener {
 
     private IRecyclerView mIrc;
     private LoadingTip mLoadingTip;
@@ -64,7 +64,7 @@ public class InvoiceFragment extends SBaseFragment implements OnRefreshListener,
         mIrc.setOnRefreshListener(this);
         mIrc.setOnLoadMoreListener(this);
 
-        mAdapter = new InvoiceAdapter(getContext(), R.layout.setting_adapter_item_personal_invoice);
+        mAdapter = new InvoiceAdapter(getContext(), R.layout.setting_adapter_item_company_invoice);
         mIrc.setAdapter(mAdapter);
     }
 
@@ -74,6 +74,7 @@ public class InvoiceFragment extends SBaseFragment implements OnRefreshListener,
         if (bundle != null) {
             isGoods = bundle.getBoolean(SAppConstant.IS_GOODS);
         }
+
         UserData userData = SDKUtils.getUser();
         if (userData == null) {
             return;
@@ -86,7 +87,7 @@ public class InvoiceFragment extends SBaseFragment implements OnRefreshListener,
 
     private void getInvoice(final boolean isRefresh) {
         SApi.getDefault(SHostType.BASE_URL)
-                .getMemberInvoiceDefineList(MasterUtils.addSessionID(), memberID, 1,
+                .getMemberInvoiceDefineList(MasterUtils.addSessionID(), memberID, 2,
                         currentPage, pageNumber, "1")
                 .compose(SRxHelper.<InvoiceEntity>handleResult())
                 .compose(SRxSchedulers.<InvoiceEntity>io_main())
@@ -185,7 +186,7 @@ public class InvoiceFragment extends SBaseFragment implements OnRefreshListener,
                 Bundle bundle = new Bundle();
                 bundle.putString(SAppConstant.INVOICE_FLAG, Configure.UPDATE.name());
                 bundle.putString(SAppConstant.MEMBER_INVOICE_DEFINE_ID, info.getMemberInvoiceDefineID());
-                SystemUtils.jumpActivityForResult(getActivity(), InvoiceActivity.class, SAppConstant.INVOICE_CODE, bundle);
+                SystemUtils.jumpActivityForResult(getActivity(), InvoiceActivity.class, SAppConstant.COMPANY_INVOICE_CODE, bundle);
             }
         });
 
@@ -217,7 +218,6 @@ public class InvoiceFragment extends SBaseFragment implements OnRefreshListener,
                     }
                 });
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

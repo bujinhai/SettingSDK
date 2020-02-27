@@ -14,6 +14,7 @@ import com.jinshu.settinglibrary.app.SAppConstant;
 import com.jinshu.settinglibrary.base.baseapp.SBaseActivity;
 import com.jinshu.settinglibrary.base.baseapp.SBaseFragmentAdapter;
 import com.jinshu.settinglibrary.entity.Configure;
+import com.jinshu.settinglibrary.fragment.CompanyInvoiceFragment;
 import com.jinshu.settinglibrary.fragment.InvoiceFragment;
 import com.jinshu.settinglibrary.utils.SystemUtils;
 
@@ -29,8 +30,8 @@ public class InvoiceListActivity extends SBaseActivity {
 
     private ViewPager viewPager;
     private TabLayout tablayout;
-    InvoiceFragment fragment;
-
+    private InvoiceFragment fragment;
+    private CompanyInvoiceFragment invoiceFragment;
     private boolean isGoods;
 
     @Override
@@ -56,18 +57,14 @@ public class InvoiceListActivity extends SBaseActivity {
         titles.add("个人发票");
         titles.add("公司发票");
 
-        for (int i = 0; i < titles.size(); i++) {
-            fragment = new InvoiceFragment();
-            Bundle args = new Bundle();
-            args.putBoolean(SAppConstant.IS_GOODS, isGoods);
-            if (i == 0) {
-                args.putInt(SAppConstant.INVOICE_TYPE, 1);
-            } else {
-                args.putInt(SAppConstant.INVOICE_TYPE, 2);
-            }
-            fragment.setArguments(args);
-            fragments.add(fragment);
-        }
+        fragment = new InvoiceFragment();
+        invoiceFragment = new CompanyInvoiceFragment();
+        Bundle args = new Bundle();
+        args.putBoolean(SAppConstant.IS_GOODS, isGoods);
+        fragment.setArguments(args);
+        invoiceFragment.setArguments(args);
+        fragments.add(fragment);
+        fragments.add(invoiceFragment);
 
         viewPager.setAdapter(new SBaseFragmentAdapter(getSupportFragmentManager(), fragments, titles));
         tablayout.setupWithViewPager(viewPager);
@@ -91,5 +88,6 @@ public class InvoiceListActivity extends SBaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         fragment.onActivityResult(requestCode, resultCode, data);
+        invoiceFragment.onActivityResult(requestCode, resultCode, data);
     }
 }

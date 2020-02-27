@@ -26,7 +26,11 @@ import com.jinshu.settinglibrary.recyclerview.widget.LoadMoreFooterView;
 import com.jinshu.settinglibrary.utils.MasterUtils;
 import com.jinshu.settinglibrary.utils.SystemUtils;
 import com.jinshu.settinglibrary.utils.ToastUtil;
+import com.jinshu.settinglibrary.view.Image;
 import com.jinshu.settinglibrary.widget.LoadingTip;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Create on 2019/10/25 16:57 by bll
@@ -113,7 +117,7 @@ public class FeedBackListActivity extends SBaseActivity implements OnRefreshList
                 .getMyFeedList(MasterUtils.addSessionID(), currentPage, pageNumber, "1")
                 .compose(SRxHelper.<FeedListEntity>handleResult())
                 .compose(SRxSchedulers.<FeedListEntity>io_main())
-                .subscribe(new SRxSubscriber<FeedListEntity>(mContext) {
+                .subscribe(new SRxSubscriber<FeedListEntity>(mContext, false) {
                     @Override
                     protected void onSuccess(FeedListEntity entity) {
                         if (entity.getData() == null || entity.getData().getRows() == null) {
@@ -140,6 +144,8 @@ public class FeedBackListActivity extends SBaseActivity implements OnRefreshList
                             }
                         }
 
+                        handleData(entity.getData().getRows());
+
                         if (isRefresh) {
                             mAdapter.replaceAll(entity.getData().getRows());
                         } else {
@@ -156,6 +162,18 @@ public class FeedBackListActivity extends SBaseActivity implements OnRefreshList
                 });
 
     }
+
+    private void handleData(List<FeedListEntity.DataInfo.RowsInfo> rows) {
+        for (FeedListEntity.DataInfo.RowsInfo rowsInfo : rows) {
+            List<Image> images = new ArrayList<>();
+            for (String url : rowsInfo.getAttachmentList()) {
+                Image image = new Image(url, 640, 640);
+                images.add(image);
+                rowsInfo.setImageList(images);
+            }
+        }
+    }
+
 
     @Override
     public void onRefresh() {

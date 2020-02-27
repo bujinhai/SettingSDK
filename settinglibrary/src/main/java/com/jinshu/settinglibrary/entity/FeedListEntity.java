@@ -1,5 +1,7 @@
 package com.jinshu.settinglibrary.entity;
 
+import com.jinshu.settinglibrary.view.Image;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -127,6 +129,7 @@ public class FeedListEntity implements Serializable{
             private String submitTimeStr;
             private int multipleType;
             private List<String> attachmentList;
+            private List<Image> imageList;
 
             public String getFeedID() {
                 return feedID;
@@ -222,6 +225,14 @@ public class FeedListEntity implements Serializable{
 
             public void setAttachmentList(List<String> attachmentList) {
                 this.attachmentList = attachmentList;
+            }
+
+            public List<Image> getImageList() {
+                return imageList;
+            }
+
+            public void setImageList(List<Image> imageList) {
+                this.imageList = imageList;
             }
         }
     }
